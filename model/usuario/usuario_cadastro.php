@@ -1,6 +1,6 @@
 <?php
 
-require_once('usuario_bd.php');
+include('usuario_bd.php');
 
 $nome = filter_input(INPUT_POST, 'nome');
 $sobrenome = filter_input(INPUT_POST, 'sobrenome');
@@ -30,6 +30,7 @@ try{
 }catch (mysqli_sql_exception $e){
     echo "ERRO".$e->getMessage();
 }
+
 
 
 

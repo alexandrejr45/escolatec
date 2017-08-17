@@ -1,8 +1,8 @@
 <?php
 
 function conexao (){
-    if(file_exists('../database/config/database.ini')){
-        $bd = parse_ini_file('../database/config/database.ini');
+    if(file_exists('../../database/config/database.ini')){
+        $bd = parse_ini_file('../../database/config/database.ini');
     }else{
         $bd = null;
 
@@ -18,4 +18,9 @@ function conexao (){
 
     return $conexao;
 
+}
+
+function desconecta($conn){
+
+    mysqli_close($conn);
 }

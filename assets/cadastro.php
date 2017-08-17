@@ -13,7 +13,7 @@ session_start();
     <body>
         <header>
             <div class="container">
-                <form action="../model/usuario/cadastro_usuario.php" method="post">
+                <form action="../model/usuario/usuario_cadastro.php" method="post">
                     <div class="row">
                         <div class="col-lg-4">
                             <label>Nome<input class="form-control" name="nome" type="text"></label>
