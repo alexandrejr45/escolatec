@@ -17,15 +17,24 @@ $cep = filter_input(INPUT_POST, 'cep');
 
 
 try{
-    $cad = cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep);
+    $validaUsuario = buscaUsuario($email, $cpf);
 
-    if($cad){
-        $_SESSION['login'] = true;
-
-        echo 'OLÁ, MUNDOOOOO!!';
+    if($validaUsuario == true){
+        $_SESSION['usuario_existente'] = 'O email ou cpf já existem';
+        header('Location: ../../index.php');
     }else{
-        echo 'NÃO CONECTOU :(';
+        $cad = cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep);
+
+        if($cad){
+            $_SESSION['login'] = 'Logado';
+            header('Location: ../../assets/pages/usuario/dashboard.php');
+
+        }else{
+            header('Location: ../../index.php');
+        }
+
     }
+
 
 }catch (mysqli_sql_exception $e){
     echo "ERRO".$e->getMessage();

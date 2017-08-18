@@ -13,9 +13,9 @@ try{
 
     if($conexao == true){
 
-        $_SESSION['id'] = $conexao;
+        $_SESSION['id_usuario'] = $conexao;
         $_SESSION['login'] = 'Logado';
-        header('Location: ../../assets/Dashboard.php');
+        header('Location: ../../assets/pages/usuario/dashboard.php');
     }else{
         $_SESSION['login_falha'] = true;
         header('Location: ../../index.php');
