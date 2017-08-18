@@ -59,11 +59,11 @@ if(isset($_SESSION['login'])){
                         </div>
                         <div class="col-md-10" style="left: 3em">
                             <label class="col-md-6 input">
-                                <input type="radio" name="prof">Sou Responsavel
+                                <input type="radio" name="prof" required>Sou Responsavel
                             </label>
 
                             <label class="col-md-6 input">
-                                <input type="radio" name="prof">Sou professor
+                                <input type="radio" name="prof" required>Sou professor
                             </label>
                         </div>
 

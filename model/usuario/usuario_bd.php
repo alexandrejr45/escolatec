@@ -71,15 +71,18 @@ function verificaCadastro($email, $senha){
 
     $id = mysqli_fetch_row($valor);
 
-    $valores = mysqli_num_rows($valor);
-
-    if($valores > 0){
-        desconecta($conexao);
-        return $id[0];
+    if($valor){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
+            return $id[0];
+        }else{
+            desconecta($conexao);
+            return false;
+        }
     }else{
-        desconecta($conexao);
-        return false;
+        die(mysqli_error($conexao));
     }
+
 
 }
 
@@ -93,12 +96,16 @@ function selecionarUsuario($id){
 
     $valores = mysqli_fetch_assoc($valor);
 
-    if(mysqli_num_rows($valor) > 0){
-        desconecta($conexao);
-        return $valores;
+    if($valor){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
+            return $valores;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
     }else{
-        desconecta($conexao);
-        return false;
+        die(mysqli_error($conexao));
     }
 
 }
@@ -124,7 +131,7 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
     $valor = mysqli_query($conexao, $sql);
 
     if($valor){
-        if(mysqli_num_rows($valor)){
+        if(mysqli_num_rows($valor) > 0){
             desconecta($conexao);
             return true;
         }else{
@@ -137,3 +144,25 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
 
 
 }
+
+function deletar($id){
+    $conexao = conexao();
+
+    $sql = "DELETE FROM usuarios WHERE id = $id";
+
+    $valor = mysqli_query($conexao, $sql);
+
+    if ($valor) {
+        if (mysqli_num_rows($valor) > 0) {
+            desconecta($conexao);
+            return true;
+        } else {
+            desconecta($conexao);
+            return false;
+        }
+    } else {
+        die(mysqli_error($conexao));
+    }
+
+}
+
