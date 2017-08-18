@@ -148,21 +148,23 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
 function deletar($id){
     $conexao = conexao();
 
-    $sql = "DELETE FROM usuarios WHERE id = $id";
+    $sql = "DELETE FROM usuarios WHERE id = ".$id;
 
     $valor = mysqli_query($conexao, $sql);
+    $validacao = mysqli_num_rows($valor);
 
-    if ($valor) {
-        if (mysqli_num_rows($valor) > 0) {
+    if (isset($valor)) {
+        if ($validacao > 0) {
             desconecta($conexao);
             return true;
         } else {
             desconecta($conexao);
             return false;
         }
-    } else {
+    }else {
         die(mysqli_error($conexao));
     }
 
 }
+
 

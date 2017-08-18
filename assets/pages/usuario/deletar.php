@@ -1,6 +1,7 @@
 <?php session_start();
 
-require_once ('../../../model/usuario/usuario_bd.php');
+require_once ('../../../model/usuario/usuario_view.php');
+
 
 if(isset($_SESSION['login'])) {
 
@@ -72,7 +73,9 @@ if(isset($_SESSION['login'])) {
                     <div id="page-inner">
                         <div class="col-lg-12">
                             <div class="texto" style="font-size: 20px; text-align: center">
-
+                                <?php
+                                    retornaResposta();
+                                ?>
                             </div>
                         </div>
 
