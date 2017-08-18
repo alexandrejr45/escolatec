@@ -3,6 +3,10 @@
 
 if(isset($_SESSION['login'])) {
     require_once ('../../../model/usuario/usuario_view.php');
+
+    $id =$_SESSION['id_usuario'];
+
+    $valores = retornaDados();
     ?>
 
     <!DOCTYPE html>
@@ -72,15 +76,52 @@ if(isset($_SESSION['login'])) {
                             <h1 style= "text-align: center">Cadastro</h1>
 
                             <?php
+                                if(isset($_SESSION['alterou'])) {
 
-                            ?>
-                            <h3 class="alert-success"></h3>
-
-                            <form action="../../../model/usuario/usuario_alterar.php" method="post">
-                                <div class="row">
-                                    <?php
-                                        retornaDados();
                                     ?>
+                                    <h3 class="alert-success">Cadastro alterado</h3>
+
+                                    <?php
+                                }else if(isset($_SESSION['inalterado'])) {
+
+                                    ?>
+                                    <h3 class="alert-danger">Falha na alteração</h3>
+
+                                    <?php
+                                }
+                                    ?>
+                            <form action="../../../model/usuario/usuario_alterar.php" method="post" style="margin-top: 30px">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label>Nome<input class="form-control" name="nome" value="<?php echo "$valores[nome]"?>" type="text" required></label>
+                                        <label>Sobrenome<input class="form-control" name="sobrenome" value="<?php echo "$valores[sobrenome]"?>" type="text" required></label>
+                                        <label>Email <input class="form-control" name="email" value="<?php echo "$valores[email]"?>" type="email" required></label>
+                                        <label>Senha <input class="form-control" name="senha" value="<?php echo "$valores[senha]"?>" type="password"  required></label>
+                                        <label>Data de Nascimento<input class="form-control" name="data_nascimento" value="<?php echo "$valores[data_nascimento]"?>" type="date" required></label>
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <?php
+                                            if($valores['tipo'] == 'P'){
+                                                ?>
+                                                <h4>Status atual: Professor</h4>
+                                                <?php
+                                            }else if($valores['tipo'] == 'R'){
+                                                ?>
+                                                <h4>Status atual: Responsável</h4>
+                                                <?
+                                            }
+                                        ?>
+                                        <label>Professor<input class="checkbox" name="tipo" value="P" type="radio" required></label>
+                                        <label>Responsável<input class="checkbox" name="tipo" value="R" type="radio" required></label>
+                                        <label>Telefone<input class="form-control" name="telefone" value="<?php echo "$valores[telefone]"?>" type="number" required></label>
+                                        <label>Endereço <input class="form-control" name="endereco" value="<?php echo "$valores[endereco]"?>" type="text" required></label>
+                                        <label>Cidade <input class="form-control" name="cidade" value="<?php echo "$valores[cidade]"?>" type="text" required></label>
+                                        <label>CPF <input class="form-control" name="cpf" value="<?php echo "$valores[cpf]"?>" type="number" maxlength="9" required></label>
+                                        <label>CEP <input class="form-control" name="cep" value="<?php echo "$valores[cep]"?>" type="number" required></label>
+                                    </div>
+
+                                    <input type="hidden" value="<?=$id?>" name="id">
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4">

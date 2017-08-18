@@ -19,7 +19,7 @@ function cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $
     endereco, 
     cidade, 
     cpf, 
-    cep) VALUES ('$nome', '$sobrenome','$email', '$senha', '$data_nascimento', '$tipo', $telefone,'$endereco', '$cidade',  $cpf,$cep)";
+    cep) VALUES ('$nome', '$sobrenome','$email', '$senha', '$data_nascimento', '$tipo', $telefone,'$endereco', '$cidade',  '$cpf', '$cep')";
 
     $cadastro = mysqli_query($conexao, $sql);
 
@@ -113,12 +113,12 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
     senha = '$senha',
     data_nascimento = '$data_nascimento',
     tipo = '$tipo',
-    telefone = $telefone,
+    telefone = '$telefone',
     endereco = '$endereco',
     cidade = '$cidade', 
     cpf = '$cpf',
     cep = '$cep'
-    WHERE id = {$id}";
+    WHERE id = $id";
 
 
     $valor = mysqli_query($conexao, $sql);

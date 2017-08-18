@@ -4,7 +4,7 @@ include('usuario_bd.php');
 
 $nome = filter_input(INPUT_POST, 'nome');
 $sobrenome = filter_input(INPUT_POST, 'sobrenome');
-$email =  filter_input(INPUT_POST, 'email');
+$email =  filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $senha = filter_input(INPUT_POST, 'senha');
 $data_nascimento = filter_input(INPUT_POST, 'data_nascimento');
 $tipo = filter_input(INPUT_POST, 'tipo');
