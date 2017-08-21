@@ -23,6 +23,5 @@ function conexao (){
 }
 
 function desconecta($conn){
-
     mysqli_close($conn);
 }
