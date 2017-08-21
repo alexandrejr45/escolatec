@@ -9,32 +9,25 @@ if(isset($_SESSION['pagina'])){
 function cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep){
     $conexao = conexao();
 
-    $sql = "INSERT INTO usuarios(nome, 
-    sobrenome, 
-    email, 
-    senha, 
-    data_nascimento, 
-    tipo, 
-    telefone, 
-    endereco, 
-    cidade, 
-    cpf, 
+    $sql = "INSERT INTO usuarios(nome,
+    sobrenome,
+    email,
+    senha,
+    data_nascimento,
+    tipo,
+    telefone,
+    endereco,
+    cidade,
+    cpf,
     cep) VALUES ('$nome', '$sobrenome','$email', '$senha', '$data_nascimento', '$tipo', $telefone,'$endereco', '$cidade',  '$cpf', '$cep')";
 
-    $cadastro = $conexao->query($sql);
-    $valor = $cadastro->num_rows;
+    $cadastro = mysqli_query($conexao, $sql);
 
-    if($cadastro){
-        if($valor > 0){
-            $conexao->close();
-            return true;
-        }else{
-            $conexao->close();
-            return false;
-        }
-    }else{
-        die(mysqli_error($conexao));
-    }
+    desconecta($conexao);
+
+    return $cadastro;
+
+
 
 }
 
@@ -44,15 +37,13 @@ function buscaUsuario($email, $cpf){
 
     $sql = "SELECT *FROM usuarios WHERE email = '$email' or cpf = $cpf";
 
-    $valor = $conexao->query($sql);
+    $valor = mysqli_query($conexao, $sql);
 
-    $rows = $valor->num_rows;
-
-    if($rows > 0){
-        $conexao->close();
+    if(mysqli_num_rows($valor) > 0){
+        desconecta($conexao);
         return true;
     }else{
-        $conexao->close();
+        desconecta($conexao);
         return false;
 
     }
@@ -77,20 +68,19 @@ function verificaCadastro($email, $senha){
     $sql = "SELECT id FROM usuarios WHERE email = '$email' and senha = '$senha'";
 
     $valor = mysqli_query($conexao, $sql);
-    $rows = mysqli_num_rows($valor);
 
-    $id = mysqli_fetch_assoc($valor);
+    $id = mysqli_fetch_row($valor);
 
-    if(isset($conexao)){
-        if($rows > 0){
+    if($valor){
+        if(mysqli_num_rows($valor) > 0){
             desconecta($conexao);
-            return $id;
+            return $id[0];
         }else{
             desconecta($conexao);
             return false;
         }
     }else{
-        die($conexao->error);
+        die(mysqli_error($conexao));
     }
 
 
@@ -104,18 +94,18 @@ function selecionarUsuario($id){
 
     $valor = mysqli_query($conexao, $sql);
 
-    $valores = mysqli_num_rows($valor);
+    $valores = mysqli_fetch_assoc($valor);
 
-    if(isset($conexao)){
-        if($valores > 0){
-            $conexao->close();
+    if($valor){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
             return $valores;
         }else{
-            $conexao->close();
+            desconecta($conexao);
             return false;
         }
     }else{
-        die($conexao->error);
+        die(mysqli_error($conexao));
     }
 
 }
@@ -132,33 +122,39 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
     tipo = '$tipo',
     telefone = '$telefone',
     endereco = '$endereco',
-    cidade = '$cidade', 
+    cidade = '$cidade',
     cpf = '$cpf',
     cep = '$cep'
     WHERE id = $id";
 
 
-    $valor = $conexao->query($sql);
+    $valor = mysqli_query($conexao, $sql);
 
     if($valor){
-        if($valor->num_rows > 0){
-            $conexao->close();
+        if($valor > 0){
+            desconecta($conexao);
             return true;
         }else{
-            $conexao->close();
+            desconecta($conexao);
             return false;
         }
     }else{
-        die($conexao->error);
+        die(mysqli_error($conexao));
     }
+
+
 }
 
 function deletar($id){
     $conexao = conexao();
 
-    $valor = mysqli_query($conexao, "DELETE FROM usuarios WHERE id = ".$id);
+    $sql = "DELETE FROM usuarios WHERE id = ".$id;
 
-    if (isset($conexao)) {
+    $valor = mysqli_query($conexao, $sql);
+    $validacao = mysqli_num_rows($valor);
+
+
+    if (isset($valor)) {s
         if ($valor > 0) {
             desconecta($conexao);
             return true;
@@ -171,4 +167,3 @@ function deletar($id){
     }
 
 }
-
