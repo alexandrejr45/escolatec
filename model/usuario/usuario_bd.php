@@ -9,16 +9,16 @@ if(isset($_SESSION['pagina'])){
 function cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep){
     $conexao = conexao();
 
-    $sql = "INSERT INTO usuarios(nome, 
-    sobrenome, 
-    email, 
-    senha, 
-    data_nascimento, 
-    tipo, 
-    telefone, 
-    endereco, 
-    cidade, 
-    cpf, 
+    $sql = "INSERT INTO usuarios(nome,
+    sobrenome,
+    email,
+    senha,
+    data_nascimento,
+    tipo,
+    telefone,
+    endereco,
+    cidade,
+    cpf,
     cep) VALUES ('$nome', '$sobrenome','$email', '$senha', '$data_nascimento', '$tipo', $telefone,'$endereco', '$cidade',  '$cpf', '$cep')";
 
     $cadastro = mysqli_query($conexao, $sql);
@@ -122,7 +122,7 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
     tipo = '$tipo',
     telefone = '$telefone',
     endereco = '$endereco',
-    cidade = '$cidade', 
+    cidade = '$cidade',
     cpf = '$cpf',
     cep = '$cep'
     WHERE id = $id";
@@ -148,11 +148,13 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
 function deletar($id){
     $conexao = conexao();
 
-    $sql = "DELETE FROM usuarios WHERE id = $id";
+    $sql = "DELETE FROM usuarios WHERE id = ".$id;
 
     $valor = mysqli_query($conexao, $sql);
+    $validacao = mysqli_num_rows($valor);
 
-    if ($valor) {
+
+    if (isset($valor)) {s
         if ($valor > 0) {
             desconecta($conexao);
             return true;
@@ -160,9 +162,8 @@ function deletar($id){
             desconecta($conexao);
             return false;
         }
-    } else {
+    }else {
         die(mysqli_error($conexao));
     }
 
 }
-
