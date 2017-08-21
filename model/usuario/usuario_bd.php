@@ -153,7 +153,8 @@ function deletar($id){
     $valor = mysqli_query($conexao, $sql);
     $validacao = mysqli_num_rows($valor);
 
-    if (isset($valor)) {
+
+    if (isset($valor)) {s
         if ($valor > 0) {
             desconecta($conexao);
             return true;
