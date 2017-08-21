@@ -131,7 +131,7 @@ function alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nasciment
     $valor = mysqli_query($conexao, $sql);
 
     if($valor){
-        if(mysqli_num_rows($valor) > 0){
+        if($valor > 0){
             desconecta($conexao);
             return true;
         }else{
