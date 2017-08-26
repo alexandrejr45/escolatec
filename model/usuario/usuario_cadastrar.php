@@ -20,17 +20,23 @@ try{
     $validaUsuario = buscaUsuario($email, $cpf);
 
     if($validaUsuario == true){
+
+      echo "já existe";
+
         $_SESSION['usuario_existente'] = 'O email ou cpf já existem';
-        header('Location: ../../index.php');
+        // header('Location: ../../index.php');
     }else{
         $cad = cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep);
 
-        if($cad){
+
+        if($cad == true){
+            echo "MAMAASOIAJSOIDJOAIJDOAS";
             $_SESSION['login'] = 'Logado';
-            header('Location: ../../assets/pages/usuario/dashboard.php');
+            // header('Location: ../../assets/pages/usuario/dashboard.php');
 
         }else{
-            header('Location: ../../index.php');
+            echo "falhou :(";
+            // header('Location: ../../index.php');
         }
 
     }
@@ -39,22 +45,3 @@ try{
 }catch (mysqli_sql_exception $e){
     echo "ERRO".$e->getMessage();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

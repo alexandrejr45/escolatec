@@ -34,28 +34,11 @@ function retornaResposta(){
 <div class='row'>
 <form action=\"../../../model/usuario/usuario_deletar.php\" method=\"post\">
         <input type='hidden' value='$id' name='id'>
-        <input type = \"submit\" value = \"Sim\" class=\"btn btn-success\" >
+        <input type = \"submit\" name='Sim' value = \"Sim\" class=\"btn btn-success\" >
                                 </form>
 </div>";
-                                
+
 
 }
 
 unset($_SESSION['pagina']);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

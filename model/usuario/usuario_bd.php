@@ -19,15 +19,24 @@ function cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $
     endereco,
     cidade,
     cpf,
-    cep) VALUES ('$nome', '$sobrenome','$email', '$senha', '$data_nascimento', '$tipo', $telefone,'$endereco', '$cidade',  '$cpf', '$cep')";
+    cep) VALUES ('$nome', '$sobrenome','$email', '$senha', '$data_nascimento', '$tipo', '$telefone','$endereco', '$cidade',  '$cpf', '$cep')";
 
     $cadastro = mysqli_query($conexao, $sql);
+    $valor = mysqli_num_rows($cadastro);
 
-    desconecta($conexao);
-
-    return $cadastro;
-
-
+    if(isset($conexao)){
+      if($valor > 0){
+        mysqli_free_result($valor);
+        desconecta($conexao);
+        return true;
+      }else{
+        mysqli_free_result($valor);
+        desconecta($conexao);
+        return false;
+      }
+    }else{
+      die(mysqli_error($conexao));
+    }
 
 }
 
