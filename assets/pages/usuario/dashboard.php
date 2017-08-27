@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 
 if(isset($_SESSION['login'])) {
 
@@ -102,6 +103,36 @@ if(isset($_SESSION['login'])) {
                             </a>
                         </div>
                     </div>
+
+                    <?php
+                        if(isset($_SESSION['professor'])){
+                            ?>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
+                                    <a href="#">
+                                        <i class="fa fa-plus-circle fa-5x"></i>
+                                        <h4>Cadastrar Alunos</h4>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <?php
+
+                        }else if(isset($_SESSION['responsavel'])){
+                            ?>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
+                                    <a href="#">
+                                        <i class="fa fa-trash fa-5x"></i>
+                                        <h4>Verificar Alunos</h4>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <?
+                        }
+                    ?>
 
                 </div>
 

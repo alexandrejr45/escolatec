@@ -43,6 +43,18 @@ if(isset($_SESSION['login'])){
             <div class="row">
                 <div class="col-md-6 borda-login col-md-offset-3">
                     <h2 style="text-align: center">Sua conta</h2>
+
+                    <?php
+                        if(isset($_SESSION['login_falha'])){
+                            ?>
+                            <p style="font-family: 'Helvetica', sans-serif; font-size: 20px; color: #fff6dc">Login Inválido</p>
+
+                            <?
+                        }
+
+                        unset($_SESSION['login_falha']);
+                    ?>
+
                     <form action="model/usuario/usuario_conexao.php" method="post">
                         <div class="form-group" style="margin-top: 4em">
                             <label style="letter-spacing: 5px;"> Login:</label>
@@ -57,11 +69,11 @@ if(isset($_SESSION['login'])){
                         </div>
                         <div class="col-md-10" style="left: 3em">
                             <label class="col-md-6 input">
-                                <input type="radio" name="prof" required>Sou Responsavel
+                                <input type="radio" name="tipo" value="R" required>Sou Responsavel
                             </label>
 
                             <label class="col-md-6 input">
-                                <input type="radio" name="prof" required>Sou professor
+                                <input type="radio" name="tipo" value="P" required>Sou professor
                             </label>
                         </div>
 

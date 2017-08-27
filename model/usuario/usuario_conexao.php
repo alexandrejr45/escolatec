@@ -6,20 +6,37 @@ require_once ('usuario_bd.php');
 
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $senha = filter_input(INPUT_POST, 'senha');
+$tipo = filter_input(INPUT_POST, 'tipo');
 
 
 try{
-    $conexao = conectar($email, $senha);
+    $senha_hash = selecionarSenha($email, $tipo);
 
-    if($conexao == true){
+    if(password_verify($senha, $senha_hash)){
+        $conexao = conectar($email, $senha_hash, $tipo);
 
-        $_SESSION['id_usuario'] = $conexao;
-        $_SESSION['login'] = 'Logado';
-        header('Location: ../../assets/pages/usuario/dashboard.php');
+        if($conexao == true){
+
+            if(isset($tipo) and $tipo == 'P'){
+                $_SESSION['professor'] = 'professor';
+            }else{
+                $_SESSION['responsavel'] = 'responsavel';
+            }
+
+            $_SESSION['id_usuario'] = $conexao;
+            $_SESSION['login'] = 'Logado';
+            header('Location: ../../assets/pages/usuario/dashboard.php');
+        }else{
+            $_SESSION['login_falha'] = 'Não foi possível entrar com esse login e senha';
+            header('Location: ../../index.php');
+        }
     }else{
-        $_SESSION['login_falha'] = true;
+        $_SESSION['login_falha'] = 'Não foi possível entrar com esse login e senha';
         header('Location: ../../index.php');
     }
+
+
+
 
 }catch (mysqli_sql_exception $e){
     echo "ERRO".$e->getMessage();

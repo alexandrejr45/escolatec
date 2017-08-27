@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 include('usuario_bd.php');
 
 $nome = filter_input(INPUT_POST, 'nome');
@@ -15,28 +17,23 @@ $cpf = filter_input(INPUT_POST, 'cpf');
 $cep = filter_input(INPUT_POST, 'cep');
 
 
-
 try{
     $validaUsuario = buscaUsuario($email, $cpf);
 
     if($validaUsuario == true){
 
-      echo "já existe";
-
         $_SESSION['usuario_existente'] = 'O email ou cpf já existem';
-        // header('Location: ../../index.php');
+         header('Location: ../../index.php');
     }else{
         $cad = cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep);
 
-
         if($cad == true){
-            echo "MAMAASOIAJSOIDJOAIJDOAS";
             $_SESSION['login'] = 'Logado';
-            // header('Location: ../../assets/pages/usuario/dashboard.php');
+            header('Location: ../../assets/pages/usuario/dashboard.php');
 
         }else{
-            echo "falhou :(";
-            // header('Location: ../../index.php');
+            $_SESSION['login_falhou'] = 'Falhou';
+            header('Location: ../../index.php');
         }
 
     }

@@ -9,6 +9,8 @@ if(isset($_SESSION['pagina'])){
 function cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep){
     $conexao = conexao();
 
+    $senha = password_hash($senha, PASSWORD_DEFAULT);
+
     $sql = "INSERT INTO usuarios(nome,
     sobrenome,
     email,
@@ -19,18 +21,15 @@ function cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $
     endereco,
     cidade,
     cpf,
-    cep) VALUES ('$nome', '$sobrenome','$email', '$senha', '$data_nascimento', '$tipo', '$telefone','$endereco', '$cidade',  '$cpf', '$cep')";
+    cep) VALUES ('$nome', '$sobrenome', '$email', '$senha', '$data_nascimento', '$tipo' , '$telefone', '$endereco', '$cidade', '$cpf', '$cep')";
 
     $cadastro = mysqli_query($conexao, $sql);
-    $valor = mysqli_num_rows($cadastro);
 
     if(isset($conexao)){
-      if($valor > 0){
-        mysqli_free_result($valor);
+      if($cadastro > 0){
         desconecta($conexao);
         return true;
       }else{
-        mysqli_free_result($valor);
         desconecta($conexao);
         return false;
       }
@@ -44,23 +43,27 @@ function cadastrar($nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $
 function buscaUsuario($email, $cpf){
     $conexao = conexao();
 
-    $sql = "SELECT *FROM usuarios WHERE email = '$email' or cpf = $cpf";
+    $sql = "SELECT *FROM usuarios WHERE email = '$email' or cpf = '$cpf'";
 
     $valor = mysqli_query($conexao, $sql);
 
-    if(mysqli_num_rows($valor) > 0){
-        desconecta($conexao);
-        return true;
-    }else{
-        desconecta($conexao);
-        return false;
+    if(isset($conexao)){
+       if(mysqli_num_rows($valor) > 0){
+           desconecta($conexao);
+           return true;
 
+       }else{
+           desconecta($conexao);
+           return false;
+       }
+    }else{
+        die(mysqli_error($conexao));
     }
 
 }
 
-function conectar($email, $senha){
-    $validacao = verificaCadastro($email, $senha);
+function conectar($email, $senha, $tipo){
+    $validacao = verificaCadastro($email, $senha, $tipo);
 
     if($validacao == true){
         return $validacao;
@@ -71,10 +74,10 @@ function conectar($email, $senha){
 
 }
 
-function verificaCadastro($email, $senha){
+function verificaCadastro($email, $senha, $tipo){
     $conexao = conexao();
 
-    $sql = "SELECT id FROM usuarios WHERE email = '$email' and senha = '$senha'";
+    $sql = "SELECT id FROM usuarios WHERE email = '$email' and senha = '$senha' and tipo = '$tipo'";
 
     $valor = mysqli_query($conexao, $sql);
 
@@ -161,7 +164,6 @@ function deletar($id){
 
     $valor = mysqli_query($conexao, $sql);
 
-
     if (isset($conexao)) {
         if ($valor > 0) {
             desconecta($conexao);
@@ -175,3 +177,29 @@ function deletar($id){
     }
 
 }
+
+function selecionarSenha($email, $tipo){
+    $conexao = conexao();
+
+    $sql = "SELECT senha FROM usuarios WHERE email = '$email' and tipo = '$tipo'";
+
+    $valor = mysqli_query($conexao, $sql);
+
+    $senha = mysqli_fetch_assoc($valor);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
+            return $senha['senha'];
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+
+}
+

@@ -12,7 +12,7 @@ $resposta = filter_input(INPUT_POST, 'Sim');
 try{
     $deletar = deletar($id);
 
-    if(isset($resposta) and $resposta == 'Sim'){
+    if(isset($resposta) and $deletar == true){
         header('Location: usuario_deslogar.php');
     }else{
         header('Location: ../../assets/pages/usuario/dashboard.php');
