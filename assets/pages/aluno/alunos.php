@@ -72,51 +72,30 @@ if(isset($_SESSION['login'])) {
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?php
-                                if(isset($_SESSION['turma_alterada'])){
-                                    ?>
-
-                                    <h2 class="alert-success">Turma alterada com sucesso</h2>
-
-                                    <?php
-                                }else if(isset($_SESSION['turma_inalterada'])){
-                                    ?>
-
-                                    <h2 class="alert-danger">Falha na alteração da Turma</h2>
-
-                                    <?php
-                                }
-
-                                unset($_SESSION['turma_alterada']);
-                                unset($_SESSION['turma_inalterada']);
-                                ?>
-
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                         <tr>
                                             <td>Nome</td>
                                             <td>Sobrenome</td>
                                             <td>Matricula</td>
                                             <td>Turma</td>
                                         </tr>
-                                        </thead>
+                                    </thead>
 
-                                        <tbody>
-                                        <?php
-                                            retornaAlunos();
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                                    <tbody>
+                                    <?php
+                                        retornaAlunos();
+                                    ?>
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>
                     </div>
+
                 </div>
             </div>
             <!-- /. PAGE INNER  -->

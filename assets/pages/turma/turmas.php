@@ -72,50 +72,48 @@ if(isset($_SESSION['login'])) {
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php
+                            if(isset($_SESSION['turma_alterada'])){
+                                ?>
+
+                                <h2 class="alert-success">Turma alterada com sucesso</h2>
+
                                 <?php
-                                if(isset($_SESSION['turma_alterada'])){
-                                    ?>
+                            }else if(isset($_SESSION['turma_inalterada'])){
+                                ?>
+                                <h2 class="alert-danger">Falha na alteração da Turma</h2>
 
-                                    <h2 class="alert-success">Turma alterada com sucesso</h2>
-
-                                    <?php
-                                }else if(isset($_SESSION['turma_inalterada'])){
-                                    ?>
-
-                                    <h2 class="alert-danger">Falha na alteração da Turma</h2>
-
-                                    <?php
-                                }
+                                <?php
+                            }
 
                                 unset($_SESSION['turma_alterada']);
                                 unset($_SESSION['turma_inalterada']);
-                                ?>
+                            ?>
 
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                         <tr>
                                             <td>Nome</td>
                                             <td>Categoria</td>
                                             <td>Ano</td>
                                         </tr>
-                                        </thead>
+                                    </thead>
 
-                                        <tbody>
+                                    <tbody>
                                         <?php
                                             retornaTurmas('alterar');
                                         ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>
+
                     </div>
+
                 </div>
             </div>
             <!-- /. PAGE INNER  -->

@@ -29,7 +29,7 @@ function cadastrarAluno($nome, $sobrenome, $data_nascimento, $endereco, $matricu
 
 }
 
-function alterarAluno($nome, $sobrenome, $data_nascimento, $endereco, $matricula, $turma)
+function alterarAluno($id, $nome, $sobrenome, $data_nascimento, $endereco, $matricula, $turma)
 {
     $conexao = conexao();
 
@@ -38,12 +38,12 @@ function alterarAluno($nome, $sobrenome, $data_nascimento, $endereco, $matricula
     data_nascimento = '$data_nascimento',
     endereco = '$endereco',
     matricula = '$matricula',
-    turma_id";
+    turma_id = $turma WHERE id = $id";
 
     $valor = mysqli_query($conexao, $sql);
 
     if (isset($conexao)) {
-        if (mysqli_num_rows($valor) > 0) {
+        if (mysqli_fetch_row($valor) > 0) {
             desconecta($conexao);
             return true;
         } else {

@@ -78,7 +78,7 @@ if(isset($_SESSION['login'])) {
                             <h2>Cadastro de Aluno</h2>
                             <div class="col-lg-12">
 
-                                <form action="../../../model/aluno/aluno_cadastrar.php" method="post">
+                                <form action="../../../model/aluno/aluno_alterar.php" method="post">
                                     <div class="col-lg-12">
                                         <label style="font-size: 20px">Nome
                                             <input name="nome" value="<? echo retornaDadosAluno($id, 1)?>" class="form-control" type="text" required>
@@ -118,6 +118,8 @@ if(isset($_SESSION['login'])) {
 
 
                                         </div>
+
+                                        <input name="id" value="<?=$id?>" type="hidden">
 
 
                                         <div class="botao" style="margin-top: 40px;">

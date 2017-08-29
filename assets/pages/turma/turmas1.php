@@ -2,7 +2,6 @@
 session_start();
 
 
-
 if(isset($_SESSION['login'])) {
 
     require_once ('../../../model/turma/turma_view.php');
@@ -12,7 +11,7 @@ if(isset($_SESSION['login'])) {
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <meta charset="utf-8"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Área Administrativa</title>
             <!-- BOOTSTRAP STYLES-->
@@ -72,50 +71,49 @@ if(isset($_SESSION['login'])) {
             <!-- /. NAV SIDE  -->
             <div id="page-wrapper">
                 <div id="page-inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?php
-                                if(isset($_SESSION['turma_alterada'])){
-                                    ?>
-
-                                    <h2 class="alert-success">Turma alterada com sucesso</h2>
-
-                                    <?php
-                                }else if(isset($_SESSION['turma_inalterada'])){
-                                    ?>
-
-                                    <h2 class="alert-danger">Falha na alteração da Turma</h2>
-
-                                    <?php
-                                }
-
-                                unset($_SESSION['turma_alterada']);
-                                unset($_SESSION['turma_inalterada']);
+                    <div class="row">
+                        <div class="col-md-12">
+                            <?php
+                            if(isset($_SESSION['turma_alterada'])){
                                 ?>
 
-                                <div class="table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                        <tr>
-                                            <td>Nome</td>
-                                            <td>Categoria</td>
-                                            <td>Ano</td>
-                                        </tr>
-                                        </thead>
+                                <h2 class="alert-success">Turma alterada com sucesso</h2>
 
-                                        <tbody>
-                                        <?php
-                                            retornaTurmas('verificar');
-                                        ?>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                <?php
+                            }else if(isset($_SESSION['turma_inalterada'])){
+                                ?>
 
+                                <h2 class="alert-danger">Falha na alteração da Turma</h2>
+
+                                <?php
+                            }
+
+                            unset($_SESSION['turma_alterada']);
+                            unset($_SESSION['turma_inalterada']);
+                            ?>
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <td>Nome</td>
+                                        <td>Categoria</td>
+                                        <td>Ano</td>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <?php
+                                        retornaTurmas('verificar');
+                                    ?>
+                                    </tbody>
+                                </table>
                             </div>
 
                         </div>
+
                     </div>
+
                 </div>
             </div>
             <!-- /. PAGE INNER  -->
