@@ -13,7 +13,6 @@ $matricula = filter_input(INPUT_POST, 'matricula');
 $turma = filter_input(INPUT_POST, 'turma');
 
 
-
 try{
     $cadastro = cadastrarAluno($nome, $sobrenome, $data_nascimento, $endereco, $matricula, $turma);
 
@@ -24,7 +23,6 @@ try{
         $_SESSION['aluno_falha'] = 'Falha no Cadastro de alunos';
         header('Location: ../../assets/pages/aluno/aluno_cadastro.php');
     }
-
 
 }catch (mysqli_sql_exception $e){
     echo "Erro".$e->getMessage();

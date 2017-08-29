@@ -99,3 +99,55 @@ function selecionaTurma($id){
     }
 }
 
+function deletarTurma($id){
+
+    $conexao = conexao();
+
+    $sql = "DELETE FROM turmas WHERE id = $id";
+
+    $valor = mysqli_query($conexao, $sql);
+
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
+            return true;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+}
+
+function contarAlunosTurma($id){
+    $conexao = conexao();
+
+    $sql = "SELECT COUNT(a.id) FROM alunos a INNER JOIN turmas t ON a.turma_id = t.id WHERE turma_id = $id";
+
+    $valor = mysqli_query($conexao, $sql);
+
+    $contagem = mysqli_fetch_all($valor);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
+            return $contagem[0][0];
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+}
+
+$valor = contarAlunosTurma(6);
+
+print_r($valor);
+

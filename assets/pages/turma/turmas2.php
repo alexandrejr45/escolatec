@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-header('Content-Type: text/html; charset=utf-8');
 
 if(isset($_SESSION['login'])) {
 
@@ -10,9 +9,10 @@ if(isset($_SESSION['login'])) {
     ?>
 
     <!DOCTYPE html>
-    <html lang="pt-br">
+    <html xmlns="http://www.w3.org/1999/xhtml">
         <head>
-            <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <title>Área Administrativa</title>
             <!-- BOOTSTRAP STYLES-->
             <link href="../../css/bootstrap.css" rel="stylesheet"/>
@@ -36,20 +36,20 @@ if(isset($_SESSION['login'])) {
                             <span class="icon-bar"></span>
                         </button>
                         <span class="logout-spn">
-                                                            <a style="color: #fff" href="../../../index.php">Início</a>
-                                                        </span>
+                                                                <a style="color: #fff" href="../../../index.php">Início</a>
+                                                            </span>
 
                     </div>
 
 
                     <span class="logout-spn">
-                                                        <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
+                                                            <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
-                                                    </span>
+                                                        </span>
                     <span class="logout-spn">
-                                                        <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
+                                                            <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
 
-                                                    </span>
+                                                        </span>
 
                 </div>
             </div>
@@ -74,22 +74,22 @@ if(isset($_SESSION['login'])) {
                     <div class="row">
                         <div class="col-md-12">
                             <?php
-                            if(isset($_SESSION['turma_alterada'])){
+                            if(isset($_SESSION['turma_deletada'])){
                                 ?>
 
-                                <h2 class="alert-success">Turma alterada com sucesso</h2>
+                                <h2 class="alert-success">Turma excluída com sucesso</h2>
 
                                 <?php
-                            }else if(isset($_SESSION['turma_inalterada'])){
+                            }else if(isset($_SESSION['turma_permanece'])){
                                 ?>
 
-                                <h2 class="alert-danger">Falha na alteração da Turma</h2>
+                                <h2 class="alert-danger">Falha na exclusão da Turma - A turma já contém alunos</h2>
 
                                 <?php
                             }
 
-                            unset($_SESSION['turma_alterada']);
-                            unset($_SESSION['turma_inalterada']);
+                            unset($_SESSION['turma_deletada']);
+                            unset($_SESSION['turma_permanece']);
                             ?>
 
                             <div class="table-responsive">
@@ -103,9 +103,8 @@ if(isset($_SESSION['login'])) {
                                     </thead>
 
                                     <tbody>
-
                                     <?php
-                                        retornaTurmas('verificar');
+                                        retornaTurmas('excluir');
                                     ?>
                                     </tbody>
                                 </table>
