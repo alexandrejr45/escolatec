@@ -5,26 +5,50 @@ $_SESSION['pagina'] = 'view';
 
 require_once ('aluno_bd.php');
 
-function retornaAlunos(){
+function retornaAlunos($categoria){
     $alunos = selecionarAlunos();
 
-    if(isset($alunos)){
-        foreach ($alunos as $aluno){
-            echo "<form action='aluno_alterar_cadastro.php' method='post'>";
+    if($categoria == 'alterar'){
+        if(isset($alunos)){
+            foreach ($alunos as $aluno){
+                echo "<form action='aluno_alterar_cadastro.php' method='post'>";
 
 
-            echo "<tr></tr>";
-            echo "<td>$aluno[1]</td>";
-            echo "<td>$aluno[2]</td>";
-            echo "<td>$aluno[3]</td>";
-            echo "<td>$aluno[4]</td>";
+                echo "<tr></tr>";
+                echo "<td>$aluno[1]</td>";
+                echo "<td>$aluno[2]</td>";
+                echo "<td>$aluno[3]</td>";
+                echo "<td>$aluno[4]</td>";
 
-            echo "
+                echo "
                <td><input type='hidden' name='id' value=$aluno[0]></td>               
                <td><input class='btn btn-primary' value='Alterar' type='submit'></td>
             </form>";
+            }
+        }
+
+    }else{
+        if(isset($alunos)){
+            foreach ($alunos as $aluno){
+                echo "<form action='aluno_excluir_cadastro.php' method='post'>";
+
+
+                echo "<tr></tr>";
+                echo "<td>$aluno[1]</td>";
+                echo "<td>$aluno[2]</td>";
+                echo "<td>$aluno[3]</td>";
+                echo "<td>$aluno[4]</td>";
+
+                echo "
+               <td><input type='hidden' name='id' value=$aluno[0]></td>               
+               <td><input type='hidden' name='nome' value=$aluno[1]></td>               
+               <td><input class='btn btn-danger' value='Excluir' type='submit'></td>
+            </form>";
+            }
         }
     }
+
+
 }
 
 function retornaAlunosTurma($id){

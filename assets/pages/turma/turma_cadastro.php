@@ -75,7 +75,7 @@ if(isset($_SESSION['login'])) {
                                     if(isset($_SESSION['turma_cadastrada'])){
                                         ?>
 
-                                        <h2 class="alert-success">Turma alterada com sucesso</h2>
+                                        <h2 class="alert-success">Turma cadastrada com sucesso</h2>
 
                                         <?php
                                     }else if(isset($_SESSION['turma_erro'])){

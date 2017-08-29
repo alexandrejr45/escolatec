@@ -87,7 +87,7 @@ if(isset($_SESSION['login'])) {
 
                                     <tbody>
                                     <?php
-                                        retornaAlunos();
+                                        retornaAlunos('alterar');
                                     ?>
                                     </tbody>
                                 </table>

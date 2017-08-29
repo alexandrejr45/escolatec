@@ -126,9 +126,26 @@ function selecionarAlunosTurma($id){
     }
 }
 
+function deletarAluno($id){
+    $conexao = conexao();
 
-$valor = selecionarAlunosTurma(1);
+    $sql = "DELETE FROM alunos WHERE id = $id";
 
-print_r($valor);
+    $valor = mysqli_query($conexao, $sql);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor)){
+            desconecta($conexao);
+            return true;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+}
 
 
