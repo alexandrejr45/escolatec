@@ -2,7 +2,10 @@
 session_start();
 
 
+
 if(isset($_SESSION['login'])) {
+
+    require_once ('../../../model/turma/turma_view.php');
 
     ?>
 
@@ -71,11 +74,46 @@ if(isset($_SESSION['login'])) {
                 <div id="page-inner">
                     <div class="container">
                         <div class="row">
-                            <h2>Cadastro do Aluno</h2>
+                            <div class="col-md-12">
+                                <?php
+                                if(isset($_SESSION['turma_alterada'])){
+                                    ?>
 
-                            <div class="col-lg-12">
+                                    <h2 class="alert-success">Turma alterada com sucesso</h2>
+
+                                    <?php
+                                }else if(isset($_SESSION['turma_inalterada'])){
+                                    ?>
+
+                                    <h2 class="alert-danger">Falha na alteração da Turma</h2>
+
+                                    <?php
+                                }
+
+                                unset($_SESSION['turma_alterada']);
+                                unset($_SESSION['turma_inalterada']);
+                                ?>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <td>Nome</td>
+                                            <td>Categoria</td>
+                                            <td>Ano</td>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <?php
+                                            retornaTurmas();
+                                        ?>
+                                        </tbody>
+                                    </table>
+                                </div>
 
                             </div>
+
                         </div>
                     </div>
                 </div>

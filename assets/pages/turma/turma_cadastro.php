@@ -75,7 +75,7 @@ if(isset($_SESSION['login'])) {
                                     if(isset($_SESSION['turma_cadastrada'])){
                                         ?>
 
-                                        <h2 class="alert-success">Turma cadastrada com sucesso</h2>
+                                        <h2 class="alert-success">Turma alterada com sucesso</h2>
 
                                         <?php
                                     }else if(isset($_SESSION['turma_erro'])){
@@ -115,7 +115,7 @@ if(isset($_SESSION['login'])) {
                                         <label style="font-size: 20px; margin-top: 15px;">
                                             Ano
                                             <select name="ano" required>
-                                                <option value="1º ano">1º ano</option>
+                                                <option value="1º ano" >1º ano</option>
                                                 <option value="2º ano">2º ano</option>
                                                 <option value="3º ano">3º ano</option>
                                                 <option value="4º ano">4º ano</option>

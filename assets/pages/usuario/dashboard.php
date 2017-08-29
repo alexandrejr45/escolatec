@@ -118,7 +118,7 @@ if(isset($_SESSION['login'])) {
 
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <div class="div-square">
-                                    <a href="#">
+                                    <a href="../turma/turmas.php">
                                         <i class="fa fa-pencil-square fa-5x"></i>
                                         <h4>Alterar Turmas</h4>
                                     </a>
