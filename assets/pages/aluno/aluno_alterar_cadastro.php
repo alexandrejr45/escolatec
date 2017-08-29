@@ -1,10 +1,12 @@
 <?php
 session_start();
 
-
 if(isset($_SESSION['login'])) {
 
-    require ('../../../model/turma/turma_view.php');
+    require_once ('../../../model/aluno/aluno_view.php');
+    require_once ('../../../model/turma/turma_view.php');
+
+    $id = $_POST['id'];
 
     ?>
 
@@ -73,76 +75,57 @@ if(isset($_SESSION['login'])) {
                 <div id="page-inner">
                     <div class="container">
                         <div class="row">
-                            <?php
-                            if(isset($_SESSION['aluno_cadastrado'])){
-                                ?>
+                            <h2>Cadastro de Aluno</h2>
+                            <div class="col-lg-12">
 
-                                <h2 class="alert-success">Aluno(a) cadastrado(a) com sucesso</h2>
-
-                                <?php
-                            }else if(isset($_SESSION['aluno_falha'])){
-                                ?>
-
-                                <h2 class="alert-danger">Falha no cadastro da Aluno(a)</h2>
-
-                                <?php
-                            }
-
-                            unset($_SESSION['aluno_cadastrado']);
-                            unset($_SESSION['aluno_falha']);
-                            ?>
-
-                            <h2>Cadastro do Aluno</h2>
-
-                            <form action="../../../model/aluno/aluno_cadastrar.php" method="post">
-                                <div class="col-lg-12">
-                                    <label style="font-size: 20px">Nome
-                                        <input name="nome" class="form-control" type="text" required>
-                                    </label>
-
-                                    <label style="font-size: 20px;  margin-left: 15px">
-                                        Sobrenome
-                                        <input name="sobrenome" class="form-control" type="text" required>
-                                    </label>
-
-                                    <div style="margin-top: 15px">
-                                        <label style="font-size: 20px">
-                                            Data de Nascimento
-                                            <input type="date" name="data" class="form-control" required>
+                                <form action="../../../model/aluno/aluno_cadastrar.php" method="post">
+                                    <div class="col-lg-12">
+                                        <label style="font-size: 20px">Nome
+                                            <input name="nome" value="<? echo retornaDadosAluno($id, 1)?>" class="form-control" type="text" required>
                                         </label>
 
-                                        <label style="font-size: 20px; margin-left: 15px">
-                                            Endereço
-                                            <input type="text" name="endereco" class="form-control" required>
+                                        <label style="font-size: 20px;  margin-left: 15px">
+                                            Sobrenome
+                                            <input name="sobrenome" value="<? echo retornaDadosAluno($id, 2)?>" class="form-control" type="text" required>
                                         </label>
+
+                                        <div style="margin-top: 15px">
+                                            <label style="font-size: 20px">
+                                                Data de Nascimento
+                                                <input type="date" value="<? echo retornaDadosAluno($id, 3)?>" name="data" class="form-control" required>
+                                            </label>
+
+                                            <label style="font-size: 20px; margin-left: 15px">
+                                                Endereço
+                                                <input type="text" value="<? echo retornaDadosAluno($id, 4)?>" name="endereco" class="form-control" required>
+                                            </label>
+
+                                        </div>
+
+                                        <div style="margin-top: 15px">
+                                            <label style="font-size: 20px;">
+                                                Matricula
+                                                <input type="number" value="<? echo retornaDadosAluno($id, 5)?>" name="matricula" class="form-control" required>
+                                            </label>
+
+                                            <label style="font-size: 20px;">
+                                                Turma
+                                                <?php
+                                                    retornaTurmaAluno($id);
+                                                ?>
+
+                                            </label>
+
+
+                                        </div>
+
+
+                                        <div class="botao" style="margin-top: 40px;">
+                                            <input style="font-size: 20px;" type="submit" class="btn btn-primary" value="Alterar">
+                                        </div>
 
                                     </div>
-
-                                    <div style="margin-top: 15px">
-                                        <label style="font-size: 20px;">
-                                            Matricula
-                                            <input type="number" name="matricula" class="form-control" required>
-                                        </label>
-
-                                        <label style="font-size: 20px;">
-                                            Turma
-
-                                            <?php
-                                                retornaTurmaOpcoes();
-                                            ?>
-                                        </label>
-
-                                    </div>
-
-
-                                    <div class="botao" style="margin-top: 40px;">
-                                        <input style="font-size: 20px;" type="submit" class="btn btn-primary" value="Cadastrar">
-                                    </div>
-
-                            </form>
-
-
-                            </div>
+                                </form>
                         </div>
                     </div>
                 </div>

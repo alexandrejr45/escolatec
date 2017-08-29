@@ -118,9 +118,36 @@ if(isset($_SESSION['login'])) {
 
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <div class="div-square">
+                                    <a href="../aluno/aluno_cadastro.php">
+                                        <i class="fa fa-plus-circle fa-5x"></i>
+                                        <h4>Cadastrar Alunos</h4>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
                                     <a href="../turma/turmas.php">
                                         <i class="fa fa-pencil-square fa-5x"></i>
                                         <h4>Alterar Turmas</h4>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
+                                    <a href="../aluno/alunos.php">
+                                        <i class="fa fa-pencil-square fa-5x"></i>
+                                        <h4>Alterar Alunos</h4>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
+                                    <a href="../turma/turmas1.php">
+                                        <i class="fa fa-users fa-5x"></i>
+                                        <h4>Turmas</h4>
                                     </a>
                                 </div>
                             </div>

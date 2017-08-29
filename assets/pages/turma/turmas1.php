@@ -37,20 +37,20 @@ if(isset($_SESSION['login'])) {
                             <span class="icon-bar"></span>
                         </button>
                         <span class="logout-spn">
-                                                        <a style="color: #fff" href="../../../index.php">Início</a>
-                                                    </span>
+                                                            <a style="color: #fff" href="../../../index.php">Início</a>
+                                                        </span>
 
                     </div>
 
 
                     <span class="logout-spn">
-                                                    <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
+                                                        <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
-                                                </span>
+                                                    </span>
                     <span class="logout-spn">
-                                                    <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
+                                                        <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
 
-                                                </span>
+                                                    </span>
 
                 </div>
             </div>
@@ -106,7 +106,7 @@ if(isset($_SESSION['login'])) {
 
                                         <tbody>
                                         <?php
-                                            retornaTurmas('alterar');
+                                            retornaTurmas('verificar');
                                         ?>
                                         </tbody>
                                     </table>

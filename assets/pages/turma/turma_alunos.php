@@ -5,7 +5,9 @@ session_start();
 
 if(isset($_SESSION['login'])) {
 
-    require_once ('../../../model/turma/turma_view.php');
+    $id = $_POST['id'];
+
+    require_once ('../../../model/aluno/aluno_view.php');
 
     ?>
 
@@ -37,20 +39,20 @@ if(isset($_SESSION['login'])) {
                             <span class="icon-bar"></span>
                         </button>
                         <span class="logout-spn">
-                                                        <a style="color: #fff" href="../../../index.php">Início</a>
-                                                    </span>
+                                                                <a style="color: #fff" href="../../../index.php">Início</a>
+                                                            </span>
 
                     </div>
 
 
                     <span class="logout-spn">
-                                                    <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
+                                                            <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
-                                                </span>
+                                                        </span>
                     <span class="logout-spn">
-                                                    <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
+                                                            <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
 
-                                                </span>
+                                                        </span>
 
                 </div>
             </div>
@@ -99,14 +101,15 @@ if(isset($_SESSION['login'])) {
                                         <thead>
                                         <tr>
                                             <td>Nome</td>
-                                            <td>Categoria</td>
-                                            <td>Ano</td>
+                                            <td>Sobrenome</td>
+                                            <td>Matricula</td>
+                                            <td>Turma</td>
                                         </tr>
                                         </thead>
 
                                         <tbody>
                                         <?php
-                                            retornaTurmas('alterar');
+                                            retornaAlunosTurma($id);
                                         ?>
                                         </tbody>
                                     </table>
