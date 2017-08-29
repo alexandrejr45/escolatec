@@ -145,6 +145,15 @@ if(isset($_SESSION['login'])) {
 
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <div class="div-square">
+                                    <a href="../aluno/alunos1.php">
+                                        <i class="fa fa-trash fa-5x"></i>
+                                        <h4>Excluir Aluno</h4>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
                                     <a href="../turma/turmas1.php">
                                         <i class="fa fa-users fa-5x"></i>
                                         <h4>Turmas</h4>
