@@ -1,10 +1,9 @@
 <?php
 session_start();
 
-
 if(isset($_SESSION['login'])) {
 
-    require ('../../../model/turma/turma_view.php');
+    require_once('../../../model/turma/turma_view.php');
 
     ?>
 
@@ -43,13 +42,14 @@ if(isset($_SESSION['login'])) {
 
 
                     <span class="logout-spn">
-                                                    <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
+                        <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
-                                                </span>
+                    </span>
+
                     <span class="logout-spn">
-                                                    <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
+                        <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
 
-                                                </span>
+                    </span>
 
                 </div>
             </div>

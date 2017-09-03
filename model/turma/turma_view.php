@@ -2,8 +2,6 @@
 
 $_SESSION['pagina'] = 'view';
 
-header("charset=utf-8");
-
 require_once ('turma_bd.php');
 
 function retornaTurmas($categoria){

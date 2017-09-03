@@ -146,8 +146,3 @@ function contarAlunosTurma($id){
     }
 
 }
-
-$valor = contarAlunosTurma(6);
-
-print_r($valor);
-
