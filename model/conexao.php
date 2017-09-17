@@ -18,7 +18,7 @@ function conexao (){
 
     $conexao = mysqli_connect("$host", "$usuario", "$senha", "$nome");
 
-        mysqli_set_charset($conexao,'utf8');
+    mysqli_set_charset($conexao,'utf8');
 
     return $conexao;
 

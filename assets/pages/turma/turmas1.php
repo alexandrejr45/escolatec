@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-header('Content-Type: text/html; charset=utf-8');
-
 if(isset($_SESSION['login'])) {
 
     require_once ('../../../model/turma/turma_view.php');
@@ -93,7 +91,7 @@ if(isset($_SESSION['login'])) {
                             ?>
 
                             <div class="table-responsive">
-                                <table class="table">
+                                <table id="aluno" class="table">
                                     <thead>
                                     <tr>
                                         <td>Nome</td>

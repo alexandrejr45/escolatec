@@ -5,7 +5,16 @@ session_start();
 
 if(isset($_SESSION['login'])) {
 
+    $id_pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
+
     require_once ('../../../model/aluno/aluno_view.php');
+    require_once ('../../../model/aluno/aluno_bd.php');
+
+    $total = totalAlunos();
+
+    $alunos = 5;
+
+    $num_paginas = ceil($total/$alunos);
 
     ?>
 
@@ -87,11 +96,35 @@ if(isset($_SESSION['login'])) {
 
                                     <tbody>
                                     <?php
-                                        retornaAlunos('alterar');
+                                        $offset = $alunos * $id_pagina;
+
+                                        retornaAlunos('alterar', $offset, $alunos);
                                     ?>
                                     </tbody>
                                 </table>
                             </div>
+
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="alunos.php?pagina=0">Anterior</a></li>
+                                    <?php
+                                        for($i = 0; $i < $num_paginas; $i++) {
+                                            $estilo = '';
+
+                                            if($id_pagina = $i){
+
+                                              $estilo = "active";
+                                            }
+
+                                         ?>
+                                            <li class="page-item <?echo $estilo?>"><a href="alunos.php?pagina=<?echo $i?>"><?echo $i + 1?></a></li>
+                                            <?
+                                        }
+                                    ?>
+
+                                    <li class="page-item"><a class="page-link" href="alunos.php?pagina=<?echo $num_paginas-1?>">Próxima</a></li>
+                                </ul>
+                            </nav>
 
                         </div>
                     </div>

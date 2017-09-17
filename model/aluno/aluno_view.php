@@ -5,8 +5,8 @@ $_SESSION['pagina'] = 'view';
 
 require_once ('aluno_bd.php');
 
-function retornaAlunos($categoria){
-    $alunos = selecionarAlunos();
+function retornaAlunos($categoria, $pagina, $total){
+    $alunos = selecionarAlunos($pagina, $total);
 
     if($categoria == 'alterar'){
         if(isset($alunos)){

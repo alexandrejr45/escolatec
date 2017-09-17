@@ -57,10 +57,10 @@ function alterarAluno($id, $nome, $sobrenome, $data_nascimento, $endereco, $matr
 
 }
 
-function selecionarAlunos(){
+function selecionarAlunos($pagina, $alunos){
     $conexao = conexao();
 
-    $sql = "SELECT a.id, a.nome, a.sobrenome, a.matricula, t.nome FROM alunos a INNER JOIN turmas t WHERE turma_id = t.id;";
+    $sql = "SELECT a.id, a.nome, a.sobrenome, a.matricula, t.nome FROM alunos a INNER JOIN turmas t WHERE turma_id = t.id ORDER BY(a.nome) LIMIT $pagina, $alunos;";
 
     $valor = mysqli_query($conexao, $sql);
 
@@ -147,5 +147,32 @@ function deletarAluno($id){
     }
 
 }
+
+function totalAlunos()
+{
+    $conexao = conexao();
+
+    $sql = "SELECT COUNT(id) FROM alunos";
+
+    $valor = mysqli_query($conexao, $sql);
+
+    $total_alunos = mysqli_fetch_all($valor);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor)){
+            desconecta($conexao);
+            return $total_alunos[0][0];
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+
+}
+
 
 
