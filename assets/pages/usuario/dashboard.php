@@ -145,7 +145,7 @@ if(isset($_SESSION['login'])) {
 
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <div class="div-square">
-                                    <a href="../aluno/alunos1.php">
+                                    <a href="../aluno/alunos1.php?pagina=0">
                                         <i class="fa fa-trash fa-5x"></i>
                                         <h4>Excluir Aluno</h4>
                                     </a>

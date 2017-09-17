@@ -4,8 +4,16 @@ session_start();
 header('Content-Type: text/html; charset=utf-8');
 
 if(isset($_SESSION['login'])) {
+    $id_pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
 
     require_once ('../../../model/aluno/aluno_view.php');
+    require_once ('../../../model/aluno/aluno_bd.php');
+
+    $total = totalAlunos();
+
+    $alunos = 5;
+
+    $num_paginas = ceil($total/$alunos);
 
     ?>
 
@@ -107,11 +115,35 @@ if(isset($_SESSION['login'])) {
 
                                 <tbody>
                                 <?php
-                                retornaAlunos('excluir');
+                                $offset = $alunos * $id_pagina;
+
+                                    retornaAlunos('excluir', $offset, $alunos);
                                 ?>
                                 </tbody>
                             </table>
                         </div>
+
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="alunos1.php?pagina=0">Anterior</a></li>
+                                <?php
+                                for($i = 0; $i < $num_paginas; $i++) {
+                                    $estilo = '';
+
+                                    if($id_pagina == $i){
+
+                                        $estilo = "active";
+                                    }
+
+                                    ?>
+                                    <li class="page-item <?echo $estilo?>"><a href="alunos1.php?pagina=<?echo $i?>"><?echo $i + 1?></a></li>
+                                    <?
+                                }
+                                ?>
+
+                                <li class="page-item"><a class="page-link" href="alunos1.php?pagina=<?echo $id_pagina + 1?>">Próxima</a></li>
+                            </ul>
+                        </nav>
 
                     </div>
                 </div>

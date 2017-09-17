@@ -111,7 +111,7 @@ if(isset($_SESSION['login'])) {
                                         for($i = 0; $i < $num_paginas; $i++) {
                                             $estilo = '';
 
-                                            if($id_pagina = $i){
+                                            if($id_pagina == $i){
 
                                               $estilo = "active";
                                             }
@@ -122,7 +122,7 @@ if(isset($_SESSION['login'])) {
                                         }
                                     ?>
 
-                                    <li class="page-item"><a class="page-link" href="alunos.php?pagina=<?echo $num_paginas-1?>">Próxima</a></li>
+                                    <li class="page-item"><a class="page-link" href="alunos.php?pagina=<?echo $id_pagina + 1?>">Próxima</a></li>
                                 </ul>
                             </nav>
 
