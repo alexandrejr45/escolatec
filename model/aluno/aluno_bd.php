@@ -57,10 +57,10 @@ function alterarAluno($id, $nome, $sobrenome, $data_nascimento, $endereco, $matr
 
 }
 
-function selecionarAlunos($pagina, $alunos){
+function selecionarAlunos($offset, $alunos){
     $conexao = conexao();
 
-    $sql = "SELECT a.id, a.nome, a.sobrenome, a.matricula, t.nome FROM alunos a INNER JOIN turmas t WHERE turma_id = t.id ORDER BY(a.nome) LIMIT $pagina, $alunos;";
+    $sql = "SELECT a.id, a.nome, a.sobrenome, a.matricula, t.nome FROM alunos a INNER JOIN turmas t WHERE turma_id = t.id ORDER BY(a.nome) LIMIT $offset, $alunos;";
 
     $valor = mysqli_query($conexao, $sql);
 
