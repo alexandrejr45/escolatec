@@ -77,13 +77,13 @@ if(isset($_SESSION['login'])) {
                             if(isset($_SESSION['turma_deletada'])){
                                 ?>
 
-                                <h2 class=" alert alert-success" role="alert">Turma excluída com sucesso</h2>
+                                <h2 class="alert-success">Turma excluída com sucesso</h2>
 
                                 <?php
                             }else if(isset($_SESSION['turma_permanece'])){
                                 ?>
 
-                                <h3 class="alert alert-danger" role="alert">Falha na exclusão da Turma - A turma já contém alunos</<h3></h3>>
+                                <h2 class="alert-danger">Falha na exclusão da Turma - A turma já contém alunos</h2>
 
                                 <?php
                             }
