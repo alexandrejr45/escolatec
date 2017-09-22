@@ -13,11 +13,11 @@ if(isset($_SESSION['login'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Área Administrativa</title>
         <!-- BOOTSTRAP STYLES-->
-        <link href="../../css/bootstrap.css" rel="stylesheet"/>
+        <link href="../css/bootstrap.css" rel="stylesheet"/>
         <!-- FONTAWESOME STYLES-->
-        <link href="../../css/font-awesome.css" rel="stylesheet"/>
+        <link href="../css/font-awesome.css" rel="stylesheet"/>
         <!-- CUSTOM STYLES-->
-        <link href="../../css/custom.css" rel="stylesheet"/>
+        <link href="../css/custom.css" rel="stylesheet"/>
         <!-- GOOGLE FONTS-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
     </head>
@@ -34,14 +34,14 @@ if(isset($_SESSION['login'])) {
                         <span class="icon-bar"></span>
                     </button>
                     <span class="logout-spn">
-                                    <a style="color: #fff" href="../../../index.php">Início</a>
+                                    <a style="color: #fff" href="../../index.php">Início</a>
                                 </span>
 
                 </div>
 
 
                 <span class="logout-spn">
-                                <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
+                                <a href="../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
                             </span>
                 <span class="logout-spn">
@@ -58,7 +58,7 @@ if(isset($_SESSION['login'])) {
 
 
                     <li class="active-link">
-                        <a href="../../../index.php"><i class="fa fa-desktop "></i>Painel Geral</a>
+                        <a href="../../index.php"><i class="fa fa-desktop "></i>Painel Geral</a>
                     </li>
 
 
@@ -78,7 +78,7 @@ if(isset($_SESSION['login'])) {
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="alert alert-info">
-                            <strong>Seja bem-vindo </strong>
+                            <strong>Seja bem-vindo <? echo $_SESSION['usuario_nome']?></strong>
                         </div>
 
                     </div>
@@ -88,7 +88,7 @@ if(isset($_SESSION['login'])) {
                 <div class="row text-center pad-top">
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
-                            <a href="usuario.php">
+                            <a href="usuario/usuario.php">
                                 <i class="fa fa-edit fa-5x"></i>
                                 <h4>Alterar Cadastro</h4>
                             </a>
@@ -97,7 +97,7 @@ if(isset($_SESSION['login'])) {
 
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                         <div class="div-square">
-                            <a href="deletar.php">
+                            <a href="usuario/deletar.php">
                                 <i class="fa fa-trash fa-5x"></i>
                                 <h4>Excluir Cadastro</h4>
                             </a>
@@ -107,68 +107,25 @@ if(isset($_SESSION['login'])) {
                     <?php
                         if(isset($_SESSION['professor'])){
                             ?>
+
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <div class="div-square">
-                                    <a href="../turma/turma_cadastro.php">
-                                        <i class="fa fa-plus-circle fa-5x"></i>
-                                        <h4>Cadastrar Turmas</h4>
+                                    <a href="aluno/aluno_dashboard.php">
+                                        <i class="fa fa-user-circle fa-5x"></i>
+                                        <h4>Alunos</h4>
                                     </a>
                                 </div>
                             </div>
 
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <div class="div-square">
-                                    <a href="../aluno/aluno_cadastro.php">
-                                        <i class="fa fa-plus-circle fa-5x"></i>
-                                        <h4>Cadastrar Alunos</h4>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <div class="div-square">
-                                    <a href="../turma/turmas.php">
-                                        <i class="fa fa-pencil-square fa-5x"></i>
-                                        <h4>Alterar Turmas</h4>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <div class="div-square">
-                                    <a href="../aluno/alunos.php?pagina=0">
-                                        <i class="fa fa-pencil-square fa-5x"></i>
-                                        <h4>Alterar Alunos</h4>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <div class="div-square">
-                                    <a href="../aluno/alunos1.php?pagina=0">
-                                        <i class="fa fa-trash fa-5x"></i>
-                                        <h4>Excluir Aluno</h4>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <div class="div-square">
-                                    <a href="../turma/turmas2.php">
-                                        <i class="fa fa-trash fa-5x"></i>
-                                        <h4>Excluir Turma</h4>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                <div class="div-square">
-                                    <a href="../turma/turmas1.php">
+                                    <a href="turma/turma_dashboard.php">
                                         <i class="fa fa-users fa-5x"></i>
                                         <h4>Turmas</h4>
                                     </a>
                                 </div>
                             </div>
+
 
                             <?php
 
@@ -199,7 +156,6 @@ if(isset($_SESSION['login'])) {
     <!-- /. PAGE WRAPPER  -->
     </div>
     <div class="footer">
-        <img src="../img/publicacoes/b2690f9084c2cfd39597eaa496cb3120.jpg">
 
         <div class="row">
 
@@ -210,11 +166,11 @@ if(isset($_SESSION['login'])) {
     <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="../../js/custom.js"></script>
+    <script src="../js/custom.js"></script>
 
 
     </body>
@@ -222,6 +178,6 @@ if(isset($_SESSION['login'])) {
 
     <?
 }else{
-    header('Location: ../../../index.php');
+    header('Location: ../../index.php');
 }
     ?>

@@ -5,7 +5,7 @@ session_start();
 if(isset($_SESSION['login'])){
 
   
-    header('Location: assets/pages/usuario/dashboard.php');
+    header('Location: assets/pages/dashboard.php');
 }else {
 
     ?>

@@ -203,3 +203,30 @@ function selecionarSenha($email, $tipo){
 
 }
 
+
+function selecionarNome($id){
+    $conexao = conexao();
+
+    $sql = "SELECT nome FROM usuarios WHERE id = ".$id;
+
+    $valor = mysqli_query($conexao, $sql);
+
+    $nome = mysqli_fetch_assoc($valor);
+
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
+            return $nome['nome'];
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+}
+
+
