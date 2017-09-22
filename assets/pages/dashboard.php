@@ -126,6 +126,15 @@ if(isset($_SESSION['login'])) {
                                 </div>
                             </div>
 
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
+                                    <a href="disciplina/disciplina_dashboard.php">
+                                        <i class="fa fa-address-book fa-5x"></i>
+                                        <h4>Disciplinas</h4>
+                                    </a>
+                                </div>
+                            </div>
+
 
                             <?php
 

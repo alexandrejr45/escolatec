@@ -227,6 +227,31 @@ function selecionarNome($id){
         die(mysqli_error($conexao));
     }
 
+
 }
 
 
+function selecionarSenhaHash($id){
+    $conexao = conexao();
+
+    $sql = "SELECT senha FROM usuarios WHERE email = ".$id;
+
+    $valor = mysqli_query($conexao, $sql);
+
+    $senha = mysqli_fetch_assoc($valor);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor) > 0){
+            desconecta($conexao);
+            return $senha['senha'];
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+
+}

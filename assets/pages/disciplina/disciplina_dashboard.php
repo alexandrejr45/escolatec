@@ -34,19 +34,19 @@ if(isset($_SESSION['login'])) {
                                 <span class="icon-bar"></span>
                             </button>
                             <span class="logout-spn">
-                                        <a style="color: #fff" href="../../../index.php">Início</a>
-                                    </span>
+                                                <a style="color: #fff" href="../../../index.php">Início</a>
+                                            </span>
 
                         </div>
 
                         <span class="logout-spn">
-                                                <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
+                                                        <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
-                                            </span>
+                                                    </span>
                         <span class="logout-spn">
-                                                <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
+                                                        <a target="_blank" href="#" style="color:#fff;">Ir para Página</a>
 
-                                            </span>
+                                                    </span>
 
                     </div>
                 </div>
@@ -70,7 +70,7 @@ if(isset($_SESSION['login'])) {
                     <div id="page-inner">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h2>TURMA DASHBOARD</h2>
+                                <h2>DISCIPLINA DASHBOARD</h2>
                             </div>
                         </div>
                         <!-- /. ROW  -->
@@ -91,36 +91,9 @@ if(isset($_SESSION['login'])) {
 
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                     <div class="div-square">
-                                        <a href="turma_cadastro.php">
-                                            <i class="fa fa-plus-circle fa-5x"></i>
-                                            <h4>Cadastrar Turmas</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="turmas.php">
-                                            <i class="fa fa-pencil-square fa-5x"></i>
-                                            <h4>Alterar Turmas</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="turmas2.php">
-                                            <i class="fa fa-trash fa-5x"></i>
-                                            <h4>Excluir Turmas</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="turmas1.php">
-                                            <i class="fa fa-eye fa-5x"></i>
-                                            <h4>Verificar Turmas</h4>
+                                        <a href="disciplina_cadastro.php">
+                                            <i class="fa fa-plus fa-5x"></i>
+                                            <h4>Cadastrar Disciplina</h4>
                                         </a>
                                     </div>
                                 </div>

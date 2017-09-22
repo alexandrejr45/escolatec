@@ -15,8 +15,12 @@ $cidade = filter_input(INPUT_POST, 'cidade');
 $cpf = filter_input(INPUT_POST, 'cpf');
 $cep = filter_input(INPUT_POST, 'cep');
 
+$senha_hash = selecionarSenhaHash($id);
 
 try{
+
+    if($senha == $senha_hash){
+
         $altera = alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep);
 
         if($altera == true){
@@ -27,6 +31,23 @@ try{
             header('Location: ../../assets/pages/usuario/usuario.php');
 
         }
+    }else{
+        $senha = password_hash($senha, PASSWORD_DEFAULT);
+
+        $altera = alterarCadastro($id, $nome, $sobrenome, $email, $senha, $data_nascimento, $tipo, $telefone, $endereco, $cidade, $cpf, $cep);
+
+        if($altera == true){
+            $_SESSION['alterou'] = 'Usuário alterado';
+            header('Location: ../../assets/pages/usuario/usuario.php');
+        }else{
+            $_SESSION['inalterado'] = 'Falha na alteração';
+            header('Location: ../../assets/pages/usuario/usuario.php');
+
+        }
+
+    }
+
+
 
 }catch (mysqli_sql_exception $e){
     echo "ERRO".$e->getMessage();
