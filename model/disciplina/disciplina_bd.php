@@ -27,6 +27,30 @@ function cadastrarDisciplina ($nome, $conteudo){
 }
 
 
+function selecionaDisciplinas(){
+
+    $conexao =  conexao();
+
+    $sql = "SELECT *FROM disciplinas";
+
+
+    $selecionar = mysqli_query($conexao, $sql);
+
+    $disciplinas = mysqli_fetch_all($selecionar);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($selecionar) > 0){
+            desconecta($conexao);
+            return $disciplinas;
+
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+    }
+
+}
+
 
 
 
