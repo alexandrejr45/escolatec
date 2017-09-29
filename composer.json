@@ -1,0 +1,9 @@
+{
+    "require": {
+        "nexmo/client": "@beta"
+    },
+
+    "autoload":{
+        "classmap" : ["vendor"]
+    }
+}
