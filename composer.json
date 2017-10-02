@@ -1,6 +1,7 @@
 {
     "require": {
-        "nexmo/client": "@beta"
+        "nexmo/client": "@beta",
+        "phpmailer/phpmailer": "~6.0"
     },
 
     "autoload":{

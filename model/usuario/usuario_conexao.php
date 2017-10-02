@@ -28,12 +28,17 @@ try{
             $_SESSION['id_usuario'] = $conexao;
             $_SESSION['usuario_nome'] = $nome;
             $_SESSION['login'] = 'Logado';
+
+
             header('Location: ../../assets/pages/dashboard.php');
         }else{
             $_SESSION['login_falha'] = 'Não foi possível entrar com esse login e senha';
+
+
             header('Location: ../../index.php');
         }
     }else{
+
         $_SESSION['login_falha'] = 'Não foi possível entrar com esse login e senha';
         header('Location: ../../index.php');
     }

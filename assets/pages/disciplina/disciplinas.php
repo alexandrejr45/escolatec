@@ -1,10 +1,13 @@
 <?php
 session_start();
 
+
+
 if(isset($_SESSION['login'])) {
 
-    ?>
+    require_once ('../../../model/disciplina/disciplina_view.php');
 
+    ?>
 
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,6 +42,7 @@ if(isset($_SESSION['login'])) {
 
                         </div>
 
+
                         <span class="logout-spn">
                             <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
@@ -69,84 +73,54 @@ if(isset($_SESSION['login'])) {
                 <div id="page-wrapper">
                     <div id="page-inner">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <h2>DISCIPLINA DASHBOARD</h2>
-                            </div>
-                        </div>
-                        <!-- /. ROW  -->
-                        <div class="row">
-                            <div class="col-lg-12 ">
-                                <div class="alert alert-info">
-                                    <strong>Seja bem-vindo <?= $_SESSION['usuario_nome']?></strong>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- /. ROW  -->
-                        <div class="row text-center pad-top">
-                            <?php
-                            if(isset($_SESSION['professor'])){
-                                ?>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="disciplina_cadastro.php">
-                                            <i class="fa fa-plus fa-5x"></i>
-                                            <h4>Cadastrar Disciplina</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="disciplinas.php">
-                                            <i class="fa fa-book fa-5x"></i>
-                                            <h4>Disciplinas</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="disciplinas2.php">
-                                            <i class="fa fa-trash-o fa-5x"></i>
-                                            <h4>Excluir Disciplina</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-
+                            <div class="col-md-12">
                                 <?php
+                                if(isset($_SESSION['disciplina_alterada'])){
+                                    ?>
 
-                            }else if(isset($_SESSION['responsavel'])){
+                                    <h2 class="alert-success">Disciplina alterada com sucesso</h2>
+
+                                    <?php
+                                }else if(isset($_SESSION['disciplina_inalterada'])){
+                                    ?>
+
+                                    <h2 class="alert-danger">Falha na alteração da disciplina</h2>
+
+                                    <?php
+                                }
+
+                                unset($_SESSION['disciplina_alterada']);
+                                unset($_SESSION['disciplina_inalterada']);
                                 ?>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="#">
-                                            <i class="fa fa-trash fa-5x"></i>
-                                            <h4>Verificar Alunos</h4>
-                                        </a>
-                                    </div>
+
+
+                                <div class="table-responsive">
+                                    <table class="table" style="font-size: 20px">
+                                        <thead>
+                                        <tr>
+                                            <td>Nome</td>
+                                            <td>Conteúdo</td>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        <?php
+                                            retornaDisciplinas('alterar');
+                                        ?>
+                                        </tbody>
+                                    </table>
                                 </div>
 
-
-                                <?
-                            }
-                            ?>
+                            </div>
 
                         </div>
 
                     </div>
                 </div>
-                <!-- /. ROW  -->
-            </div>
-            <!-- /. PAGE INNER  -->
+                <!-- /. PAGE INNER  -->
             </div>
             <!-- /. PAGE WRAPPER  -->
-            </div>
             <div class="footer">
-
                 <div class="row">
 
                 </div>

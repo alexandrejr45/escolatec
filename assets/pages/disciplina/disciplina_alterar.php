@@ -1,10 +1,14 @@
 <?php
 session_start();
 
+
 if(isset($_SESSION['login'])) {
 
-    ?>
+    require_once ('../../../model/disciplina/disciplina_view.php');
 
+    $id = $_POST['id'];
+
+    ?>
 
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,6 +43,7 @@ if(isset($_SESSION['login'])) {
 
                         </div>
 
+
                         <span class="logout-spn">
                             <a href="../../../model/usuario/usuario_deslogar.php" style="color:#fff;">Sair</a>
 
@@ -68,85 +73,42 @@ if(isset($_SESSION['login'])) {
                 <!-- /. NAV SIDE  -->
                 <div id="page-wrapper">
                     <div id="page-inner">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h2>DISCIPLINA DASHBOARD</h2>
+                        <div class="container">
+                            <div class="row">
+                                <h2>Alteração da Disciplina</h2>
+
+
+                                <div class="col-lg-12">
+
+                                    <form style="margin-top: 30px" action="../../../model/disciplina/disciplina_alterar.php" method="post">
+
+
+                                        <input type="hidden" value="<?=$id?>" name="id">
+
+
+                                        <div class="col-lg-3">
+                                            <label style="font-size: 20px">Nome <input style="font-size: 20px" type="text" value="<? echo retornaDadosDisciplina($id, 0)?>" name="nome" class="form-control"></label>
+
+                                        </div>
+
+
+                                        <label style="font-size: 20px">Conteúdo<textarea style="font-size: 18px; width: 400px; height: 250px" class="form-control" name="conteudo"><? echo retornaDadosDisciplina($id, 1)?></textarea></label>
+
+
+                                        <div class="botao" style="margin-top: 40px;">
+                                            <input style="font-size: 20px;" type="submit" class="btn btn-primary" value="Alterar">
+                                        </div>
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <!-- /. ROW  -->
-                        <div class="row">
-                            <div class="col-lg-12 ">
-                                <div class="alert alert-info">
-                                    <strong>Seja bem-vindo <?= $_SESSION['usuario_nome']?></strong>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- /. ROW  -->
-                        <div class="row text-center pad-top">
-                            <?php
-                            if(isset($_SESSION['professor'])){
-                                ?>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="disciplina_cadastro.php">
-                                            <i class="fa fa-plus fa-5x"></i>
-                                            <h4>Cadastrar Disciplina</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="disciplinas.php">
-                                            <i class="fa fa-book fa-5x"></i>
-                                            <h4>Disciplinas</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="disciplinas2.php">
-                                            <i class="fa fa-trash-o fa-5x"></i>
-                                            <h4>Excluir Disciplina</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-
-                                <?php
-
-                            }else if(isset($_SESSION['responsavel'])){
-                                ?>
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
-                                    <div class="div-square">
-                                        <a href="#">
-                                            <i class="fa fa-trash fa-5x"></i>
-                                            <h4>Verificar Alunos</h4>
-                                        </a>
-                                    </div>
-                                </div>
-
-
-                                <?
-                            }
-                            ?>
-
-                        </div>
-
                     </div>
                 </div>
-                <!-- /. ROW  -->
-            </div>
-            <!-- /. PAGE INNER  -->
+                <!-- /. PAGE INNER  -->
             </div>
             <!-- /. PAGE WRAPPER  -->
-            </div>
             <div class="footer">
-
                 <div class="row">
 
                 </div>

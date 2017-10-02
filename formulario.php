@@ -73,13 +73,7 @@ if(isset($_SESSION['login'])){
                             <div class="col-md-3 col-md-offset-3" style="top: 1em">
                                 <input style="font-family: Helvetica, sans-serif; font-size: 20px"  type="submit" class="btn btn-default" value="Cadastrar">
                             </div>
-
-
-
-
-
-
-
+                        </div>
                     </form>
                 </div>
             </div>
