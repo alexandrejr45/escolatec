@@ -27,7 +27,7 @@ function retornaAlunos($categoria, $pagina, $total){
             }
         }
 
-    }else{
+    }else if($categoria == 'excluir'){
         if(isset($alunos)){
             foreach ($alunos as $aluno){
                 echo "<form action='aluno_excluir_cadastro.php' method='post'>";
@@ -43,6 +43,25 @@ function retornaAlunos($categoria, $pagina, $total){
                <td><input type='hidden' name='id' value=$aluno[0]></td>               
                <td><input type='hidden' name='nome' value=$aluno[1]></td>               
                <td><input class='btn btn-danger' value='Excluir' type='submit'></td>
+            </form>";
+            }
+        }
+    }else if($categoria == 'associar'){
+        if(isset($alunos)){
+            foreach ($alunos as $aluno){
+                echo "<form action='alunos_responsaveis.php' method='post'>";
+
+
+                echo "<tr></tr>";
+                echo "<td>$aluno[1]</td>";
+                echo "<td>$aluno[2]</td>";
+                echo "<td>$aluno[3]</td>";
+                echo "<td>$aluno[4]</td>";
+
+                echo "
+               <td><input type='hidden' name='id' value=$aluno[0]></td>               
+               <td><input type='hidden' name='nome' value=$aluno[1]></td>               
+               <td><input class='btn btn-warning' value='Selecionar' type='submit'></td>
             </form>";
             }
         }

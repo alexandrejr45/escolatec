@@ -256,3 +256,100 @@ function selecionarSenhaHash($id){
 
 }
 
+function totalResponsaveis()
+{
+    $conexao = conexao();
+
+    $sql = "SELECT COUNT(id) FROM usuarios WHERE tipo = 'R'";
+
+    $valor = mysqli_query($conexao, $sql);
+
+    $total_alunos = mysqli_fetch_all($valor);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor)){
+            desconecta($conexao);
+            return $total_alunos[0][0];
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+}
+
+function selecionaResponsaveis($pagina, $total){
+    $conexao = conexao();
+
+    $sql = "SELECT r.id, r.nome, r.sobrenome, r.email, r.cidade, r.telefone FROM usuarios r WHERE tipo = 'R' ORDER BY r.nome LIMIT $pagina, $total";
+
+    $cadastrar = mysqli_query($conexao, $sql);
+
+
+    $responsaveis = mysqli_fetch_all($cadastrar);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($cadastrar) > 0){
+            desconecta($conexao);
+            return $responsaveis;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+}
+
+
+function cadastraAlunoResponsavel ($id_responsavel, $id_aluno) {
+    $conexao = conexao();
+
+    $sql = "INSERT INTO alunos_responsaveis (usuario_id, aluno_id) VALUES ($id_responsavel, $id_aluno)";
+
+    $cadastro = mysqli_query($conexao, $sql);
+
+    if (isset($conexao)) {
+        if ($cadastro > 0) {
+            desconecta($conexao);
+            return true;
+        } else {
+            desconecta($conexao);
+            return false;
+        }
+    } else {
+        die(mysqli_error($conexao));
+    }
+
+
+}
+
+
+function confereAlunoResponsavel($id_responsavel, $id_aluno){
+    $conexao = conexao();
+
+    $sql = "SELECT *FROM alunos_responsaveis WHERE usuario_id = $id_responsavel and aluno_id = $id_aluno";
+
+    $cadastrar = mysqli_query($conexao, $sql);
+
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($cadastrar) > 0){
+            desconecta($conexao);
+            return true;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+}
+
+
