@@ -124,14 +124,16 @@ function retornaFrequenciaAlunos($id_turma, $id_aula){
 
     $nomes_input_freq = array();
     $nomes_input_aula = array();
+    $nomes_input_id = array();
     $aux = 0;
 
 
 
 
     foreach($alunos as $aluno){
-        $nomes_input_freq[$aux] = "sim$aux";
+        $nomes_input_freq[$aux] = "freq$aux";
         $nomes_input_aula[$aux] = "id$aux";
+        $nomes_input_id[$aux] = "aluno$aux";
 
         echo "<tr></tr>";
         echo "<td>$aluno[0]</td>";
@@ -144,6 +146,7 @@ function retornaFrequenciaAlunos($id_turma, $id_aula){
         echo "<td><label>Não<input style='margin-left: 15px' type='radio' name='$nomes_input_freq[$aux]' value='0' required></label></td>";
 
         echo "<td><input type='hidden' name='$nomes_input_aula[$aux]' value='$id_aula'></td>";
+        echo "<td><input type='hidden' name='$nomes_input_id[$aux]' value='$aluno[4]'></td>";
 
         $aux++;
 
