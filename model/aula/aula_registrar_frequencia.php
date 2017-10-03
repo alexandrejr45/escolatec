@@ -36,8 +36,8 @@ try{
 
                 foreach($responsavel as $res){
 
-                    enviaEmail($res[0], $res[1], $data, $aula[$i]);
-
+                    enviaSms($res[1], $res[4], $data, $aula[$i]);
+                    enviaEmail($res[0], $res[1], $data, $aula[$i], $res[3], $alunos[$i]);
                 }
             }
 

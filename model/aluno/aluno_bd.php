@@ -175,7 +175,7 @@ function totalAlunos() {
 function selecionaResponsavel($id_aluno){
     $conexao = conexao();
 
-    $sql = "SELECT u.email, a.nome, u.telefone FROM alunos a INNER JOIN alunos_responsaveis ar ON a.id = ar.aluno_id 
+    $sql = "SELECT u.email, a.nome, u.telefone, u.id, u.telefone FROM alunos a INNER JOIN alunos_responsaveis ar ON a.id = ar.aluno_id 
             INNER JOIN usuarios u ON ar.usuario_id = u.id WHERE a.id = $id_aluno";
 
     $valor = mysqli_query($conexao, $sql);

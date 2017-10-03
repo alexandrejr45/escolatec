@@ -7,12 +7,17 @@ use PHPMailer\PHPMailer\Exception;
 
 
 if(isset($_SESSION['pagina'])){
+    require_once ('../../../model/notificacao/notificacao_bd.php');
     require_once ('../../../model/conexao.php');
     require '../../../vendor/autoload.php';
 }else{
+    require_once ('../notificacao/notificacao_bd.php');
     require_once('../conexao.php');
     require '../../vendor/autoload.php';
 }
+
+
+
 
 function cadastrarAula($data, $nome, $disciplina){
     $conexao = conexao();
@@ -84,7 +89,7 @@ function cadastraRegistro($id_aula, $id_aluno, $frequencia, $data){
 }
 
 
-function enviaEmail($email, $aluno, $data, $aula){
+function enviaEmail($email, $aluno, $data, $aula, $id_responsavel, $id_aluno){
     $mail = new PHPMailer(true);
 
     // Passing `true` enables exceptions
@@ -104,13 +109,18 @@ function enviaEmail($email, $aluno, $data, $aula){
         $mail->addAddress("$email", "$aluno");     // Add a recipient
 
 
+        $texto = "Caro, responsável, $aluno levou falta na aula de $aula do dia $data";
+
         //Content
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = 'Alerta de falta';
-        $mail->Body = "O estudante $aluno levou falta na aula de $aula do dia $data";
+        $mail->Body = $texto;
         $mail->AltBody = "Falta na aula de $aula";
 
         $mail->send();
+
+        cadastrarNotificacao($texto, $data, $id_responsavel, $id_aluno);
+
 
         $_SESSION['registro_cadastrado'] = 'Cadastrado';
         header('Location: ../../assets/pages/aula/aula_turmas.php');
@@ -120,5 +130,19 @@ function enviaEmail($email, $aluno, $data, $aula){
         echo 'Mailer Error: ' . $mail->ErrorInfo;
 
     }
+
+}
+
+function enviaSms($aluno, $telefone, $aula, $data){
+    $credentials = new Nexmo\Client\Credentials\Basic('f2fdda8f', '481b6454e78de3ee');
+    $client = new Nexmo\Client($credentials);
+
+    $message = $client->message()->send([
+        'from' => '5591998296476',
+        'to' => "5591$telefone",
+        'text' => "Caro, responsável, $aluno levou falta na aula de $aula do dia $data"
+    ]);
+
+
 
 }
