@@ -106,7 +106,7 @@ function selecionarAluno($id){
 function selecionarAlunosTurma($id){
     $conexao = conexao();
 
-    $sql = "SELECT a.nome, a.sobrenome, a.matricula, t.nome FROM alunos a INNER JOIN turmas t ON a.turma_id = t.id WHERE turma_id = $id";
+    $sql = "SELECT a.nome, a.sobrenome, a.matricula, t.nome, a.id FROM alunos a INNER JOIN turmas t ON a.turma_id = t.id WHERE turma_id = $id ORDER BY a.nome";
 
     $valor = mysqli_query($conexao, $sql);
 

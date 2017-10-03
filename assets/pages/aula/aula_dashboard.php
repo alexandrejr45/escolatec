@@ -107,6 +107,15 @@ if(isset($_SESSION['login'])) {
                                     </div>
                                 </div>
 
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                    <div class="div-square">
+                                        <a href="aulas2.php">
+                                            <i class="fa fa-sticky-note fa-5x"></i>
+                                            <h4>Registro de Aula</h4>
+                                        </a>
+                                    </div>
+                                </div>
+
 
 
                                 <?php

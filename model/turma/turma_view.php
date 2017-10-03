@@ -58,9 +58,32 @@ function retornaTurmas($categoria){
             }
         }
     }
-
-
 }
+
+function retornaTurmasAlunos($categoria, $id_aula){
+
+    $turmas  = selecionarTurmas();
+
+    if($categoria == 'registro') {
+        if (isset($turmas)) {
+            foreach ($turmas as $turma) {
+                echo "<form action='aula_frequencia.php' method='post'>";
+
+                echo "<tr></tr>";
+                echo "<td>$turma[2]</td>";
+                echo "<td>$turma[3]</td>";
+                echo "<td>$turma[4]</td>";
+
+                echo "
+               <td><input type='hidden' name='id_turma' value=$turma[0]></td>               
+               <td><input type='hidden' name='id_aula' value=$id_aula></td>               
+               <td><input class='btn btn-danger' value='Selecionar' type='submit'></td>
+            </form>";
+            }
+        }
+    }
+}
+
 
 function retornaDadosTurma($id, $num){
     $turma = selecionaTurma($id);

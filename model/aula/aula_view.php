@@ -29,6 +29,27 @@ function retornaAulas($categoria){
 
         }
 
+    }else if('registro'){
+        if(isset($aulas)){
+            if(isset($aulas)){
+                foreach ($aulas as $aula){
+                    echo "<form action='aula_turmas.php' method='post'>";
+
+
+                    echo "<tr></tr>";
+                    echo "<td>$aula[1]</td>";
+                    echo "<td>$aula[2]</td>";
+                    echo "<td>$aula[3]</td>";
+
+                    echo "
+                            <td><input type='hidden' name='id' value=$aula[0]></td>               
+                            <td><input class='btn btn-primary' value='Registrar' type='submit'></td>
+                            </form>";
+                }
+            }
+
+        }
+
     }
 
 }

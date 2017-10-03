@@ -119,5 +119,44 @@ function retornaTurmaAluno($id){
 }
 
 
+function retornaFrequenciaAlunos($id_turma, $id_aula){
+    $alunos = selecionarAlunosTurma($id_turma);
+
+    $nomes_input_freq = array();
+    $nomes_input_aula = array();
+    $aux = 0;
+
+
+
+
+    foreach($alunos as $aluno){
+        $nomes_input_freq[$aux] = "sim$aux";
+        $nomes_input_aula[$aux] = "id$aux";
+
+        echo "<tr></tr>";
+        echo "<td>$aluno[0]</td>";
+        echo "<td>$aluno[1]</td>";
+        echo "<td>$aluno[2]</td>";
+        echo "<td>$aluno[3]</td>";
+
+
+        echo "<td><label>Sim<input style='margin-left: 15px' type='radio' name='$nomes_input_freq[$aux]' value='1' required></label></td>";
+        echo "<td><label>Não<input style='margin-left: 15px' type='radio' name='$nomes_input_freq[$aux]' value='0' required></label></td>";
+
+        echo "<td><input type='hidden' name='$nomes_input_aula[$aux]' value='$id_aula'></td>";
+
+        $aux++;
+
+    }
+
+
+
+
+
+
+
+}
+
+
 unset($_SESSION['pagina']);
 
