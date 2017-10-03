@@ -1,10 +1,17 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+//Load composer's autoloader
+
 
 if(isset($_SESSION['pagina'])){
     require_once ('../../../model/conexao.php');
+    require '../../../vendor/autoload.php';
 }else{
     require_once('../conexao.php');
+    require '../../vendor/autoload.php';
 }
 
 function cadastrarAula($data, $nome, $disciplina){
@@ -74,6 +81,44 @@ function cadastraRegistro($id_aula, $id_aluno, $frequencia, $data){
         die(mysqli_error($conexao));
     }
 
+}
 
+
+function enviaEmail($email, $aluno, $data, $aula){
+    $mail = new PHPMailer(true);
+
+    // Passing `true` enables exceptions
+    try {
+        //Server settings
+        $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'escoltecufra@gmail.com';                 // SMTP username
+        $mail->Password = 'escolatec123';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+
+        //Recipients
+        $mail->setFrom('escoltecufra@gmail.com', 'Escola');
+        $mail->addAddress("$email", "$aluno");     // Add a recipient
+
+
+        //Content
+        $mail->isHTML(true);                                  // Set email format to HTML
+        $mail->Subject = 'Alerta de falta';
+        $mail->Body = "O estudante $aluno levou falta na aula de $aula do dia $data";
+        $mail->AltBody = "Falta na aula de $aula";
+
+        $mail->send();
+
+        $_SESSION['registro_cadastrado'] = 'Cadastrado';
+        header('Location: ../../assets/pages/aula/aula_turmas.php');
+
+    } catch (Exception $e) {
+        echo 'Mensagem não pode ser enviada';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+
+    }
 
 }

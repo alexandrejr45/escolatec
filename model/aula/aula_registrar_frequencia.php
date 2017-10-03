@@ -4,6 +4,7 @@ session_start();
 
 
 require_once('aula_bd.php');
+require_once('../aluno/aluno_bd.php');
 
 $tamanho = filter_input(INPUT_POST, 'tamanho', FILTER_VALIDATE_INT);
 
@@ -18,6 +19,9 @@ for($i = 0; $i < $tamanho; $i++){
     $alunos[$i] = filter_input(INPUT_POST, "aluno$i");
     $frequencia[$i] = filter_input(INPUT_POST, "freq$i");
     $aula[$i] = filter_input(INPUT_POST, "aula$i");
+
+
+
 }
 
 
@@ -25,6 +29,17 @@ try{
     if(isset($alunos) and isset($frequencia)){
         for($i = 0; $i < $tamanho; $i++){
             $cadastro  = cadastraRegistro($aula[$i], $alunos[$i], $frequencia[$i], $data);
+
+
+            if($frequencia[$i] == 0){
+                $responsavel = selecionaResponsavel($alunos[$i]);
+
+                foreach($responsavel as $res){
+
+                    enviaEmail($res[0], $res[1], $data, $aula[$i]);
+
+                }
+            }
 
         }
 

@@ -170,6 +170,34 @@ function totalAlunos() {
         die(mysqli_error($conexao));
     }
 
+}
+
+function selecionaResponsavel($id_aluno){
+    $conexao = conexao();
+
+    $sql = "SELECT u.email, a.nome, u.telefone FROM alunos a INNER JOIN alunos_responsaveis ar ON a.id = ar.aluno_id 
+            INNER JOIN usuarios u ON ar.usuario_id = u.id WHERE a.id = $id_aluno";
+
+    $valor = mysqli_query($conexao, $sql);
+
+    $responsavel = mysqli_fetch_all($valor);
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($valor)){
+            desconecta($conexao);
+            return $responsavel;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
 
 }
+
+
+
 

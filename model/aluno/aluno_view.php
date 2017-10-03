@@ -119,8 +119,7 @@ function retornaTurmaAluno($id){
 }
 
 
-function retornaFrequenciaAlunos($id_turma, $id_aula)
-{
+function retornaFrequenciaAlunos($id_turma, $id_aula){
     $alunos = selecionarAlunosTurma($id_turma);
 
     $nomes_input_freq = array();
