@@ -92,7 +92,7 @@ if(isset($_SESSION['login'])) {
                                     <?php
                                 }
 
-                                unset($_SESSION['registro_invalido']);
+                                unset($_SESSION['registro_cadastrado']);
                                 unset($_SESSION['registro_invalido']);
                                 ?>
 
