@@ -135,6 +135,15 @@ if(isset($_SESSION['login'])) {
                                 </div>
                             </div>
 
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                                <div class="div-square">
+                                    <a href="aula/aula_dashboard.php">
+                                        <i class="fa fa-address-card fa-5x"></i>
+                                        <h4>Aulas</h4>
+                                    </a>
+                                </div>
+                            </div>
+
 
                             <?php
 
@@ -142,7 +151,7 @@ if(isset($_SESSION['login'])) {
                             ?>
                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                                 <div class="div-square">
-                                    <a href="#">
+                                    <a href="usuario/alunos_responsavel.php">
                                         <i class="fa fa-trash fa-5x"></i>
                                         <h4>Verificar Alunos</h4>
                                     </a>

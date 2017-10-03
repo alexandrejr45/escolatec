@@ -4,7 +4,7 @@
 if(isset($_SESSION['login'])) {
     require_once ('../../../model/usuario/usuario_view.php');
 
-    $id =$_SESSION['id_usuario'];
+    $id = $_SESSION['id_usuario'];
 
     $valores = retornaDados();
     ?>

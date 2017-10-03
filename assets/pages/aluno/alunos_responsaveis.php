@@ -102,9 +102,9 @@ if(isset($_SESSION['login'])) {
 
                                     <tbody>
                                     <?php
-                                    $offset = $alunos * $id_pagina;
+                                        $offset = $alunos * $id_pagina;
 
-                                    retornaResponsaveis('associar', $offset, $alunos, $id_aluno);
+                                        retornaResponsaveis('associar', $offset, $alunos, $id_aluno);
                                     ?>
                                     </tbody>
                                 </table>

@@ -32,6 +32,8 @@ try{
 
             header('Location: ../../assets/pages/dashboard.php');
         }else{
+            echo "akaka";
+
             $_SESSION['login_falha'] = 'Não foi possível entrar com esse login e senha';
 
 

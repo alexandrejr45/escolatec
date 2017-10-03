@@ -56,6 +56,26 @@ function retornaDadosDisciplina($id, $num){
 }
 
 
+function retornaDisciplinaOpcoes(){
+
+    $disciplinas  = selecionaDisciplinas();
+
+
+    if(isset($disciplinas)){
+        echo "<select name='disciplina'>";
+
+        foreach ($disciplinas as $disciplina){
+            echo "<option value='$disciplina[0]'>$disciplina[1]</option>";
+        }
+
+        echo "</select>";
+    }
+}
+
+
+
+
+
 unset($_SESSION['pagina']);
 
 

@@ -234,16 +234,16 @@ function selecionarNome($id){
 function selecionarSenhaHash($id){
     $conexao = conexao();
 
-    $sql = "SELECT senha FROM usuarios WHERE email = ".$id;
+    $sql = "SELECT senha FROM usuarios WHERE id = $id";
 
     $valor = mysqli_query($conexao, $sql);
 
-    $senha = mysqli_fetch_assoc($valor);
+    $senha = mysqli_fetch_all($valor);
 
     if(isset($conexao)){
         if(mysqli_num_rows($valor) > 0){
             desconecta($conexao);
-            return $senha['senha'];
+            return $senha[0][0];
         }else{
             desconecta($conexao);
             return false;
@@ -351,5 +351,35 @@ function confereAlunoResponsavel($id_responsavel, $id_aluno){
         die(mysqli_error($conexao));
     }
 }
+
+
+function selecionaAlunosDoResponsavel($id_responsavel){
+    $conexao = conexao();
+
+    $sql = "SELECT al.id, al.nome, al.sobrenome, al.matricula, al.endereco, al.data_nascimento FROM usuarios u INNER JOIN alunos_responsaveis a on u.id = a.usuario_id
+            INNER JOIN alunos al ON a.aluno_id = al.id WHERE u.id = $id_responsavel";
+
+    $cadastrar = mysqli_query($conexao, $sql);
+
+    $alunos = mysqli_fetch_all($cadastrar);
+
+
+    if(isset($conexao)){
+        if(mysqli_num_rows($cadastrar) > 0){
+            desconecta($conexao);
+            return $alunos;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+}
+
+
+
 
 

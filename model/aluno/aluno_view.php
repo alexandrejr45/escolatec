@@ -49,7 +49,7 @@ function retornaAlunos($categoria, $pagina, $total){
     }else if($categoria == 'associar'){
         if(isset($alunos)){
             foreach ($alunos as $aluno){
-                echo "<form action='alunos_responsaveis.php' method='post'>";
+                echo "<form action='alunos_responsaveis.php?pagina=0' method='post'>";
 
 
                 echo "<tr></tr>";

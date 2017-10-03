@@ -3,7 +3,7 @@ session_start();
 
 
 
-if(isset($_SESSION['login'])) {
+if(isset($_SESSION['login']) and isset($_SESSION['professor'])) {
 
     $id_pagina = filter_input(INPUT_GET, 'pagina', FILTER_VALIDATE_INT);
 
@@ -155,6 +155,8 @@ if(isset($_SESSION['login'])) {
     </html>
 
     <?
+}else if(isset($_SESSION['responsavel'])){
+    header('Location: ../dashboard.php');
 }else{
     header('Location: ../../../index.php');
 }

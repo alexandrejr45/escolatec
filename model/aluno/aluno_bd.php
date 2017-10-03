@@ -148,8 +148,7 @@ function deletarAluno($id){
 
 }
 
-function totalAlunos()
-{
+function totalAlunos() {
     $conexao = conexao();
 
     $sql = "SELECT COUNT(id) FROM alunos";
@@ -173,6 +172,4 @@ function totalAlunos()
 
 
 }
-
-
 

@@ -60,7 +60,7 @@ function retornaResponsaveis($categoria, $pagina, $total, $id_aluno){
                 echo "<td>$responsavel[4]</td>";
 
 
-                if($verificacao == true){
+                if($verificacao > 0){
 
                     echo "
                        <td><input type='hidden' name='id_aluno' value=$id_aluno></td>               
@@ -80,6 +80,33 @@ function retornaResponsaveis($categoria, $pagina, $total, $id_aluno){
         }
 
     }
+
+}
+
+function retornaAlunosResponsavel($id_responsavel){
+    $alunos = selecionaAlunosDoResponsavel($id_responsavel);
+
+    if(isset($alunos)){
+        foreach ($alunos as $aluno){
+            echo "<form action='aluno_informacoes.php' method='post'>";
+
+
+
+            echo "<tr></tr>";
+            echo "<td>$aluno[1]</td>";
+            echo "<td>$aluno[2]</td>";
+            echo "<td>$aluno[3]</td>";
+            echo "<td>$aluno[4]</td>";
+
+            echo "<td><input type='hidden' name='id' value=$aluno[0]></td>               
+                       <td><input class='btn btn-primary' value='Selecionar' type='submit'></td>
+                    </form>";
+
+
+
+        }
+    }
+
 
 }
 
