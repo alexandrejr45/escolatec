@@ -117,8 +117,6 @@ if(isset($_SESSION['login'])) {
                                                     retornaFrequenciaAlunos($id_turma, $id_aula);
                                                 ?>
 
-
-
                                                 <tr ><td><input style="margin-top: 30px; font-size: 20px" class='btn btn-primary' value='Cadastrar' type='submit'></td></tr>
 
                                             </form>

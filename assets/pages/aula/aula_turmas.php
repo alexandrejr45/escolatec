@@ -79,21 +79,21 @@ if(isset($_SESSION['login'])) {
                         <div class="row">
                             <div class="col-md-12">
                                 <?php
-                                if(isset($_SESSION['turma_alterada'])){
+                                if(isset($_SESSION['registro_cadastrado'])){
                                     ?>
 
-                                    <h2 class="alert-success">Turma alterada com sucesso</h2>
+                                    <h2 class="alert-success">Aula registrada com sucesso</h2>
 
                                     <?php
-                                }else if(isset($_SESSION['turma_inalterada'])){
+                                }else if(isset($_SESSION['registro_cadastrado'])){
                                     ?>
-                                    <h2 class="alert-danger">Falha na alteração da Turma</h2>
+                                    <h2 class="alert-danger">Falha no registro da Aula</h2>
 
                                     <?php
                                 }
 
-                                unset($_SESSION['turma_alterada']);
-                                unset($_SESSION['turma_inalterada']);
+                                unset($_SESSION['registro_invalido']);
+                                unset($_SESSION['registro_invalido']);
                                 ?>
 
                                 <div class="table-responsive">
