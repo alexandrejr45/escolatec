@@ -119,21 +119,20 @@ function retornaTurmaAluno($id){
 }
 
 
-function retornaFrequenciaAlunos($id_turma, $id_aula){
+function retornaFrequenciaAlunos($id_turma, $id_aula)
+{
     $alunos = selecionarAlunosTurma($id_turma);
 
     $nomes_input_freq = array();
     $nomes_input_aula = array();
-    $nomes_input_id = array();
+    $nomes_input_aluno = array();
     $aux = 0;
 
 
-
-
-    foreach($alunos as $aluno){
+    foreach ($alunos as $aluno) {
         $nomes_input_freq[$aux] = "freq$aux";
-        $nomes_input_aula[$aux] = "id$aux";
-        $nomes_input_id[$aux] = "aluno$aux";
+        $nomes_input_aula[$aux] = "aula$aux";
+        $nomes_input_aluno[$aux] = "aluno$aux";
 
         echo "<tr></tr>";
         echo "<td>$aluno[0]</td>";
@@ -146,19 +145,19 @@ function retornaFrequenciaAlunos($id_turma, $id_aula){
         echo "<td><label>Não<input style='margin-left: 15px' type='radio' name='$nomes_input_freq[$aux]' value='0' required></label></td>";
 
         echo "<td><input type='hidden' name='$nomes_input_aula[$aux]' value='$id_aula'></td>";
-        echo "<td><input type='hidden' name='$nomes_input_id[$aux]' value='$aluno[4]'></td>";
+        echo "<td><input type='hidden' name='$nomes_input_aluno[$aux]' value='$aluno[4]'></td>";
 
         $aux++;
 
     }
 
+    $tamanho = count($nomes_input_aula);
 
-
-
-
-
+    echo "<td><input type='hidden' name='tamanho' value=$tamanho></td>";
 
 }
+
+
 
 
 unset($_SESSION['pagina']);

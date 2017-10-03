@@ -51,3 +51,29 @@ function selecionarAulas(){
     }
 
 }
+
+
+
+function cadastraRegistro($id_aula, $id_aluno, $frequencia, $data){
+    $conexao = conexao();
+
+    $sql = "INSERT INTO registros (aula_id, aluno_id, frequencia, data_aula) VALUES ($id_aula, $id_aluno, $frequencia, '$data')";
+
+    $cadastro = mysqli_query($conexao, $sql);
+
+
+    if(isset($conexao)){
+        if($cadastro > 0){
+            desconecta($conexao);
+            return true;
+        }else{
+            desconecta($conexao);
+            return false;
+        }
+    }else{
+        die(mysqli_error($conexao));
+    }
+
+
+
+}

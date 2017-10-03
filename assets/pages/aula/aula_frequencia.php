@@ -112,16 +112,16 @@ if(isset($_SESSION['login'])) {
 
                                         <tbody>
 
-                                        <form action="#" method="post">
-                                            <?php
-                                                retornaFrequenciaAlunos($id_turma, $id_aula);
-                                            ?>
+                                            <form action="../../../model/aula/aula_registrar_frequencia.php" method="post">
+                                                <?php
+                                                    retornaFrequenciaAlunos($id_turma, $id_aula);
+                                                ?>
 
 
 
-                                            <tr ><td><input style="margin-top: 30px; font-size: 20px" class='btn btn-primary' value='Cadastrar' type='submit'></td></tr>
+                                                <tr ><td><input style="margin-top: 30px; font-size: 20px" class='btn btn-primary' value='Cadastrar' type='submit'></td></tr>
 
-                                        </form>
+                                            </form>
 
 
                                         </tbody>
